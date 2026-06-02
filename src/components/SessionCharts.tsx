@@ -10,10 +10,10 @@ interface SessionChartsProps {
 export default function SessionCharts({ currentSession, history }: SessionChartsProps) {
   // We measure four key metrics
   const metrics = [
-    { key: 'incomodo', label: 'Incomodo', value: currentSession.incomodo || 'Nenhuma' },
-    { key: 'raiva', label: 'Raiva', value: currentSession.raiva || 'Nenhuma' },
-    { key: 'magoa', label: 'Mágoa', value: currentSession.magoa || 'Nenhuma' },
-    { key: 'notaCena', label: 'Nota da Cena', value: currentSession.notaCena !== undefined ? `${currentSession.notaCena}/10` : '0/10' },
+    { key: 'incomodo', label: 'Incomodo', value: currentSession.incomodo || 'Não selecionado' },
+    { key: 'raiva', label: 'Raiva', value: currentSession.raiva || 'Não selecionado' },
+    { key: 'magoa', label: 'Mágoa', value: currentSession.magoa || 'Não selecionado' },
+    { key: 'notaCena', label: 'Nota da Cena', value: currentSession.notaCena !== undefined && currentSession.notaCena !== null ? `${currentSession.notaCena}/10` : 'Não selecionado' },
   ];
 
   const getIntensityValue = (m: typeof metrics[0]) => {
@@ -67,9 +67,9 @@ export default function SessionCharts({ currentSession, history }: SessionCharts
     const last = sorted[sorted.length - 1];
 
     const getSessionAverage = (s: TrackingSession) => {
-      const incVal = INTENSITY_MAP[s.incomodo] ?? 0;
-      const raivaVal = INTENSITY_MAP[s.raiva] ?? 0;
-      const magoaVal = INTENSITY_MAP[s.magoa] ?? 0;
+      const incVal = s.incomodo ? (INTENSITY_MAP[s.incomodo as IntensityLevel] ?? 0) : 0;
+      const raivaVal = s.raiva ? (INTENSITY_MAP[s.raiva as IntensityLevel] ?? 0) : 0;
+      const magoaVal = s.magoa ? (INTENSITY_MAP[s.magoa as IntensityLevel] ?? 0) : 0;
       const notaVal = (s.notaCena ?? 0) * 10;
       return (incVal + raivaVal + magoaVal + notaVal) / 4;
     };
@@ -98,7 +98,7 @@ export default function SessionCharts({ currentSession, history }: SessionCharts
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
         {/* Radar Graphic */}
         <div className="flex justify-center items-center py-4 bg-white rounded-xl border border-slate-100/80 shadow-xs relative">
-          {currentSession.notaCena !== undefined && (
+          {currentSession.notaCena !== undefined && currentSession.notaCena !== null && (
             <div className="absolute top-2 left-2 bg-indigo-50 rounded-lg py-1 px-2 border border-indigo-100 text-[10px] font-bold text-indigo-700">
               Nota: {currentSession.notaCena}/10
             </div>

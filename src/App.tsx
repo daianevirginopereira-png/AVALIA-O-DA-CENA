@@ -29,14 +29,14 @@ import {
 
 export default function App() {
   // Main form state
-  const [incomodo, setIncomodo] = useState<IntensityLevel>('Baixa');
-  const [raiva, setRaiva] = useState<IntensityLevel>('Nenhuma');
-  const [magoa, setMagoa] = useState<IntensityLevel>('Nenhuma');
+  const [incomodo, setIncomodo] = useState<IntensityLevel | ''>('');
+  const [raiva, setRaiva] = useState<IntensityLevel | ''>('');
+  const [magoa, setMagoa] = useState<IntensityLevel | ''>('');
   const [coracao, setCoracao] = useState<string[]>([]);
   const [coracaoOutro, setCoracaoOutro] = useState('');
   const [pensamentoFirst, setPensamentoFirst] = useState('');
   const [corpoReage, setCorpoReage] = useState<string[]>([]);
-  const [notaCena, setNotaCena] = useState<number>(5);
+  const [notaCena, setNotaCena] = useState<number | null>(null);
   const [comparacao, setComparacao] = useState<'Melhor do que antes' | 'Igual a antes' | 'Pior do que antes' | ''>('');
   const [trabalharCena, setTrabalharCena] = useState('');
   const [mensagemPai, setMensagemPai] = useState('');
@@ -104,13 +104,13 @@ export default function App() {
 Thiago, às vezes uma lembrança parece resolvida porque a gente consegue falar dela, mas ainda pode existir alguma dor escondida no coração ou alguma reação no corpo. Essa avaliação nos ajuda a descobrir se a cena do óculos realmente perdeu a força emocional ou se ainda ficaram sentimentos acumulados.
 
 1. O quanto essa lembrança ainda te incomoda? (Força da cena)
-👉 ${session.incomodo || 'Nenhuma'}
+👉 ${session.incomodo || 'Não selecionado'}
 
 2. 😡 Raiva: Quando lembra da cena, como está sua raiva hoje?
-👉 ${session.raiva || 'Nenhuma'}
+👉 ${session.raiva || 'Não selecionado'}
 
 3. 😢 Mágoa: Quando lembra da cena, como está sua mágoa hoje?
-👉 ${session.magoa || 'Nenhuma'}
+👉 ${session.magoa || 'Não selecionado'}
 
 4. ❤️ Coração: O que você sente no coração quando lembra da cena?
 👉 ${coracaoOutput || 'Nada disso'}
@@ -122,7 +122,7 @@ Thiago, às vezes uma lembrança parece resolvida porque a gente consegue falar 
 👉 ${bodyPartsReadable}
 
 7. 📊 Nota da Cena: Se 0 significa "não dói nada" e 10 significa "dói muito", qual nota você daria hoje para a cena do óculos?
-👉 Nota: ${session.notaCena !== undefined ? session.notaCena : '5'} / 10
+👉 Nota: ${session.notaCena !== undefined && session.notaCena !== null ? session.notaCena : 'Não avaliada'} / 10
 
 8. 🔄 Comparação: Você sente que essa cena está:
 👉 ${session.comparacao || 'Não respondida'}
@@ -155,14 +155,14 @@ Medidas estruturadas de acompanhamento terapêutico.`;
   // Reset form layout
   const handleResetForm = () => {
     if (window.confirm('Tem certeza de que deseja limpar todo o formulário atual?')) {
-      setIncomodo('Baixa');
-      setRaiva('Nenhuma');
-      setMagoa('Nenhuma');
+      setIncomodo('');
+      setRaiva('');
+      setMagoa('');
       setCoracao([]);
       setCoracaoOutro('');
       setPensamentoFirst('');
       setCorpoReage([]);
-      setNotaCena(5);
+      setNotaCena(null);
       setComparacao('');
       setTrabalharCena('');
       setMensagemPai('');
@@ -471,11 +471,9 @@ Medidas estruturadas de acompanhamento terapêutico.`;
                         4. ❤️ Coração: O que você sente no coração quando lembra da cena?
                       </span>
                     </div>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2" id="coracao-checkbox-options">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5" id="coracao-checkbox-options">
                       {['Raiva', 'Mágoa', 'Injustiça', 'Rejeição', 'Tristeza', 'Nada disso'].map((feeling) => {
-                        const isChecked = feeling === 'Nada disso' 
-                          ? coracao.length === 0 
-                          : coracao.includes(feeling);
+                        const isChecked = coracao.includes(feeling);
                         return (
                           <button
                             key={feeling}
@@ -483,7 +481,11 @@ Medidas estruturadas de acompanhamento terapêutico.`;
                             id={`opt-coracao-${feeling.toLowerCase().replace(' ', '-')}`}
                             onClick={() => {
                               if (feeling === 'Nada disso') {
-                                setCoracao([]);
+                                if (coracao.includes('Nada disso')) {
+                                  setCoracao([]);
+                                } else {
+                                  setCoracao(['Nada disso']);
+                                }
                               } else {
                                 if (coracao.includes(feeling)) {
                                   const updated = coracao.filter((f) => f !== feeling);
@@ -494,14 +496,24 @@ Medidas estruturadas de acompanhamento terapêutico.`;
                                 }
                               }
                             }}
-                            className={`px-4 py-3 border rounded-xl text-xs sm:text-sm font-semibold cursor-pointer text-left transition-all ${
+                            className={`px-4 py-3.5 border-2 rounded-xl text-xs sm:text-sm font-semibold cursor-pointer text-left transition-all relative flex items-center justify-between gap-1.5 ${
                               isChecked
-                                ? 'bg-indigo-50 text-indigo-700 border-indigo-200'
-                                : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                                ? 'bg-indigo-50 text-indigo-900 border-indigo-600 ring-4 ring-indigo-500/10 shadow-3xs'
+                                : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:border-slate-300'
                             }`}
                           >
-                            <span className="mr-2">{isChecked ? '✓' : '○'}</span>
-                            {feeling}
+                            <span className="font-semibold block truncate pr-1">{feeling}</span>
+                            <div className={`w-4 h-4 rounded-md border flex items-center justify-center shrink-0 transition-all ${
+                              isChecked 
+                                ? 'bg-indigo-600 border-indigo-600 text-white' 
+                                : 'border-slate-300 bg-white'
+                            }`}>
+                              {isChecked && (
+                                <svg className="w-2.5 h-2.5 text-white stroke-2 fill-none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+                              )}
+                            </div>
                           </button>
                         );
                       })}
@@ -603,24 +615,29 @@ Medidas estruturadas de acompanhamento terapêutico.`;
                     </label>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                       {[
-                        { value: 'Melhor do que antes', label: '🟢 Melhor do que antes', color: 'hover:border-emerald-300 hover:bg-emerald-50 text-emerald-800 animate-pulse' },
-                        { value: 'Igual a antes', label: '🟡 Igual a antes', color: 'hover:border-amber-300 hover:bg-amber-50 text-amber-800' },
-                        { value: 'Pior do que antes', label: '🔴 Pior do que antes', color: 'hover:border-red-300 hover:bg-red-50 text-red-800' }
+                        { value: 'Melhor do que antes', label: '🟢 Melhor do que antes', active: 'border-emerald-500 text-emerald-900 bg-emerald-50/70 ring-4 ring-emerald-500/15 scale-[1.02] shadow-sm', inactive: 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-emerald-200' },
+                        { value: 'Igual a antes', label: '🟡 Igual a antes', active: 'border-amber-500 text-amber-900 bg-amber-50/70 ring-4 ring-amber-500/15 scale-[1.02] shadow-sm', inactive: 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-amber-200' },
+                        { value: 'Pior do que antes', label: '🔴 Pior do que antes', active: 'border-red-500 text-red-900 bg-red-50/70 ring-4 ring-red-500/15 scale-[1.02] shadow-sm', inactive: 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-red-200' }
                       ].map((card) => {
                         const isSelected = comparacao === card.value;
+                        const cardClasses = isSelected ? card.active : card.inactive;
+
                         return (
                           <button
                             key={card.value}
                             type="button"
                             id={`opt-comparacao-${card.value.toLowerCase().replace(/ /g, '-')}`}
                             onClick={() => setComparacao(card.value as any)}
-                            className={`px-4 py-3.5 rounded-2xl border text-xs sm:text-sm font-bold text-center transition-all cursor-pointer ${
-                              isSelected
-                                ? 'bg-indigo-50 border-indigo-400 text-indigo-700 ring-2 ring-indigo-200'
-                                : 'bg-white border-slate-200 text-slate-600'
-                            } ${card.color}`}
+                            className={`px-4 py-3.5 rounded-2xl border-2 text-xs sm:text-sm font-bold text-center transition-all cursor-pointer flex items-center justify-center gap-2.5 relative ${cardClasses}`}
                           >
-                            {card.label}
+                            <span className="relative z-10">{card.label}</span>
+                            {isSelected && (
+                              <span className="w-4 h-4 rounded-full bg-current text-white flex items-center justify-center shrink-0">
+                                <svg className="w-2.5 h-2.5 text-current stroke-[3] fill-none stroke-white" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+                              </span>
+                            )}
                           </button>
                         );
                       })}
@@ -835,7 +852,7 @@ Medidas estruturadas de acompanhamento terapêutico.`;
                 </div>
                 <div>
                   <span className="text-slate-400 font-bold block uppercase text-[9px]">Nota da Dor</span>
-                  <span className="text-indigo-600 font-extrabold">{selectedHistorySession.notaCena !== undefined ? selectedHistorySession.notaCena : '5'}/10</span>
+                  <span className="text-indigo-600 font-extrabold">{selectedHistorySession.notaCena !== undefined && selectedHistorySession.notaCena !== null ? `${selectedHistorySession.notaCena}/10` : 'Não relatada'}</span>
                 </div>
               </div>
 
