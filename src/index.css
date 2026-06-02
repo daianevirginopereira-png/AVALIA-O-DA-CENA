@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", "Inter", sans-serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+
+  --color-indigo-50: #FAF6F0;
+  --color-indigo-100: #F3EAE3;
+  --color-indigo-200: #E6D7CB;
+  --color-indigo-300: #D8BFAE;
+  --color-indigo-400: #C2A091;
+  --color-indigo-500: #9E7E73;
+  --color-indigo-600: #88675C;
+  --color-indigo-700: #715046;
+  --color-indigo-850: #573C33;
+  --color-indigo-900: #412A23;
+  --color-indigo-950: #291814;
+
+  --color-slate-50: #FAF6F0;
+  --color-slate-100: #F2E9E1;
+  --color-slate-200: #E7DBD0;
+  --color-slate-300: #D2C0B1;
+  --color-slate-400: #BDAB9C;
+  --color-slate-500: #9E8978;
+  --color-slate-600: #7A6658;
+  --color-slate-700: #59493E;
+  --color-slate-800: #413733;
+  --color-slate-900: #1D1816;
+}
+
+body {
+  background-color: var(--color-slate-50);
+}
+
+
