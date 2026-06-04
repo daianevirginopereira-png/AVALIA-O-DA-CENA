@@ -1,22 +1,22 @@
 import { IntensityLevel } from '../types';
 import { COLOR_MAP } from '../data';
-import { AlertCircle, Flame, Heart, Scale, ShieldAlert, Sparkles } from 'lucide-react';
+import { AlertCircle, Flame, Heart, Scale, ShieldAlert, Sparkles, HelpCircle } from 'lucide-react';
 
 interface IntensitySelectorProps {
   label: string;
   value: IntensityLevel | '';
   onChange: (val: IntensityLevel) => void;
   options: IntensityLevel[];
-  iconType: 'cena' | 'corpo' | 'injustica' | 'raiva' | 'magoa';
+  iconType: 'cena' | 'corpo' | 'injustica' | 'raiva' | 'magoa' | 'medo' | 'tristeza';
 }
 
 const getExplanation = (type: string, option: IntensityLevel): string => {
   if (type === 'cena') {
     switch (option) {
-      case 'Alta': return 'Mexer muito, como se fosse ontem';
-      case 'Média': return 'Ainda incomoda, mas menos';
+      case 'Alta': return 'Incomoda muito, lembrança forte';
+      case 'Média': return 'Ainda incomoda de forma moderada';
       case 'Baixa': return 'Quase não afeta mais';
-      case 'Nenhuma': return 'Consigo lembrar sem sofrimento';
+      case 'Nenhuma': return 'Sem sofrimento ao recordar';
     }
   }
   if (type === 'raiva') {
@@ -35,6 +35,30 @@ const getExplanation = (type: string, option: IntensityLevel): string => {
       case 'Nenhuma': return 'Coração leve e em paz';
     }
   }
+  if (type === 'medo') {
+    switch (option) {
+      case 'Alta': return 'Pavor físico ou pânico alto';
+      case 'Média': return 'Apreensão moderada detectável';
+      case 'Baixa': return 'Insegurança leve ou sutil';
+      case 'Nenhuma': return 'Seguro e tranquilo hoje';
+    }
+  }
+  if (type === 'tristeza') {
+    switch (option) {
+      case 'Alta': return 'Aperto profundo ou vazio agudo';
+      case 'Média': return 'Melancolia moderada residual';
+      case 'Baixa': return 'Nostalgia ou sensibilidade leve';
+      case 'Nenhuma': return 'Coração em paz e alegre';
+    }
+  }
+  if (type === 'injustica') {
+    switch (option) {
+      case 'Alta': return 'Forte revolta com a situação';
+      case 'Média': return 'Sentimento nítido de injustiça';
+      case 'Baixa': return 'Leve incômodo sobre as regras';
+      case 'Nenhuma': return 'Aceitação madura e pacífica';
+    }
+  }
   return '';
 };
 
@@ -48,15 +72,19 @@ export default function IntensitySelector({
   const getIcon = () => {
     switch (iconType) {
       case 'cena':
-        return <Sparkles className="w-5 h-5 text-indigo-500" />;
+        return <Sparkles className="w-5 h-5 text-rose-400" />;
       case 'corpo':
-        return <Flame className="w-5 h-5 text-red-500" />;
+        return <Flame className="w-5 h-5 text-amber-500" />;
       case 'injustica':
-        return <Scale className="w-5 h-5 text-violet-500" />;
+        return <Scale className="w-5 h-5 text-slate-500" />;
       case 'raiva':
         return <AlertCircle className="w-5 h-5 text-rose-500" />;
       case 'magoa':
-        return <Heart className="w-5 h-5 text-orange-500" />;
+        return <Heart className="w-5 h-5 text-rose-400" />;
+      case 'medo':
+        return <ShieldAlert className="w-5 h-5 text-rose-600" />;
+      case 'tristeza':
+        return <HelpCircle className="w-5 h-5 text-slate-400" />;
       default:
         return <ShieldAlert className="w-5 h-5 text-slate-500" />;
     }
@@ -66,12 +94,12 @@ export default function IntensitySelector({
     <div className="space-y-3" id={`selector-${iconType}`}>
       <div className="flex items-center gap-2">
         {getIcon()}
-        <span className="font-medium text-slate-800 text-sm md:text-base leading-relaxed">
+        <span className="font-semibold text-slate-800 text-sm md:text-base leading-relaxed">
           {label}
         </span>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 gap-3">
         {options.map((opt) => {
           const isSelected = value === opt;
           const colors = COLOR_MAP[opt];
@@ -80,11 +108,11 @@ export default function IntensitySelector({
           // Clearly demarcated styling when selected
           const selectClasses = isSelected
             ? opt === 'Alta'
-              ? 'border-red-500 text-red-800 bg-red-50/70 ring-4 ring-red-500/15 shadow-sm scale-[1.02]'
+              ? 'border-rose-500 text-rose-800 bg-rose-50/70 ring-4 ring-rose-500/15 shadow-sm scale-[1.02]'
               : opt === 'Média'
               ? 'border-amber-500 text-amber-800 bg-amber-50/70 ring-4 ring-amber-500/15 shadow-sm scale-[1.02]'
               : opt === 'Baixa'
-              ? 'border-blue-600 text-blue-800 bg-blue-50/70 ring-4 ring-blue-600/15 shadow-sm scale-[1.02]'
+              ? 'border-slate-400 text-slate-800 bg-slate-100/70 ring-4 ring-slate-400/15 shadow-sm scale-[1.02]'
               : 'border-slate-500 text-slate-800 bg-slate-100/70 ring-4 ring-slate-500/15 shadow-sm scale-[1.02]'
             : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300';
 
@@ -104,9 +132,9 @@ export default function IntensitySelector({
               <div className="absolute top-2 right-2">
                 <div className={`w-4 h-4 rounded-full border-1.5 flex items-center justify-center transition-all duration-150 ${
                   isSelected 
-                    ? opt === 'Alta' ? 'bg-red-500 border-red-500 text-white'
+                    ? opt === 'Alta' ? 'bg-rose-500 border-rose-500 text-white'
                       : opt === 'Média' ? 'bg-amber-500 border-amber-500 text-white'
-                      : opt === 'Baixa' ? 'bg-blue-600 border-blue-600 text-white'
+                      : opt === 'Baixa' ? 'bg-slate-500 border-slate-500 text-white'
                       : 'bg-slate-600 border-slate-600 text-white'
                     : 'border-slate-300 bg-slate-50/50'
                 }`}>
@@ -121,7 +149,7 @@ export default function IntensitySelector({
               <div className="flex flex-col items-center gap-1 w-full pt-1.5">
                 <span className="font-bold text-xs sm:text-sm tracking-wide">{opt}</span>
                 {explanation && (
-                  <span className={`text-[10px] leading-snug font-normal max-w-[125px] ${isSelected ? 'text-slate-700' : 'text-slate-400'}`}>
+                  <span className={`text-[10px] leading-snug font-normal max-w-[125px] ${isSelected ? 'text-slate-750 font-medium' : 'text-slate-400'}`}>
                     {explanation}
                   </span>
                 )}

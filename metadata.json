@@ -1,6 +1,6 @@
 {
   "name": "Acompanhamento da Cena dos Óculos",
-  "description": "Sistema de acompanhamento terapêutico e emocional para integração da cena dos óculos com geração de relatórios e envio direto via WhatsApp.",
+  "description": "Sistema de acompanhamento emocional de múltiplos modelos clínicos com relatórios e prontuários formatados e acompanhamento intuitivo.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
