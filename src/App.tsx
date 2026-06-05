@@ -59,7 +59,7 @@ const CLINICAL_PRESETS: TrialModel[] = [
     patientName: 'Thiago',
     therapistName: 'Daiane',
     sceneTitle: 'Investigação da Cena do Enforcamento',
-    welcomeText: 'Thiago, este é um mapeamento terapêutico estritamente confidencial que guiará nosso processo de ressignificação da ferida paterna e asfixia emocional sofrida no passado. Siga à sua medida. Toda recordação é salva de forma totalmente privada e formatada ao final.',
+    welcomeText: 'Thiago, daremos início juntos a um espaço seguro e de extrema confidencialidade. Este mapeamento clínico destina-se a orientar e estruturar a escuta atenta das memórias de bloqueio emocional e dor somática do passado. Siga à sua medida e de forma gradual por cada etapa, respeitando seus limites. Suas respostas são salvas com total privacidade e serão organizadas ao final para apoiar nosso caminho de ressignificação.',
     q4Label: '4. Quantos anos você tinha na cena do enforcamento?',
     q5Label: '5. O que aconteceu antes do enforcamento? (Contexto)',
     q5Placeholder: 'Relate o que disparou o castigo ou o confronto: brincadeiras, discussões, quebra de objetos...',
@@ -68,7 +68,7 @@ const CLINICAL_PRESETS: TrialModel[] = [
     q20Label: '20. O que você aprendeu sobre seu pai naquele dia do enforcamento?',
     q20Placeholder: "Ex: 'Ele é instável', 'Não posso confiar na proteção dele', 'O amor dói'...",
     q27Label: 'Imagine que aquele Thiago adolescente daquele terrível dia do enforcamento está exatamente agora sentado bem na sua frente. Ele está te escutando com olhos curiosos e atentos...',
-    q27Placeholder: "Abra seu coração por inteiro. Ofereça proteção, valide que não foi culpa dele, liberte-o daquela asfixia...",
+    q27Placeholder: "Abra seu coração por inteiro. Ofereça proteção, valide que não foi culpa dele, liberte-o daquela opressão...",
     heartExerciseContext: 'deite o foco na ferida do enforcamento na adolescência de Thiago, e complete com sua primeira intuição sem pensar:',
     maisDoeuOptions: ['O enforcamento?', 'Não ser ouvido?', 'Ser acusado?', 'O medo?', 'Outra coisa?'],
     suggestedAges: ['12 anos', '13 anos', '14 anos', '15 anos', '16 anos', '17 anos']
@@ -79,7 +79,7 @@ const CLINICAL_PRESETS: TrialModel[] = [
     patientName: 'Julia',
     therapistName: 'Daiane',
     sceneTitle: 'Investigação do Abandono Paterno',
-    welcomeText: 'Julia, este mapeamento clínico investigativo guiará nosso acolhimento da ferida da rejeição paterna e abandono afetivo na infância. Vamos olhar para a solidão e restaurar o amor-próprio.',
+    welcomeText: 'Julia, este acolhimento clínico investigativo foi projetado para guiar a integração consciente das dores da rejeição e do afastamento afetivo paterno na infância. Permita-se olhar para a solidão do passado com olhos de autocompaixão, restaurando seu valor individual de maneira inteiramente segura, confidencial e integrada.',
     q4Label: '4. Quantos anos você tinha quando ocorreu o abandono ou afastamento?',
     q5Label: '5. O que aconteceu nos dias anteriores ao afastamento? (Contexto)',
     q5Placeholder: 'Relate o clima em casa: brigas entre os pais, malas prontas, avisos prévios ou distância inexplicável...',
@@ -99,7 +99,7 @@ const CLINICAL_PRESETS: TrialModel[] = [
     patientName: 'Matheus',
     therapistName: 'Daiane',
     sceneTitle: 'Investigação de Humilhação Escolar',
-    welcomeText: 'Matheus, este mapeamento investigará as feridas da vergonha pública, do silenciamento compulsório e da rejeição social sofrida perante o ambiente acadêmico ou colegas.',
+    welcomeText: 'Matheus, daremos início juntos à investigação das feridas ligadas à vergonha pública, ao silenciamento compulsório e aos impactos somáticos da exclusão social sofrida perante o ambiente acadêmico ou colegas. Preencha no seu próprio tempo, tendo a certeza de estar sob absoluto sigilo.',
     q4Label: '4. Quantos anos você tinha na cena daquela humilhação perante o grupo?',
     q5Label: '5. O que desencadeou a ridicularização ou a crise na escola? (Contexto)',
     q5Placeholder: 'Ex: Errar uma questão no quadro, julgamentos das roupas, boatos, exclusão de grupos ou bronca do professor...',
@@ -119,7 +119,7 @@ const CLINICAL_PRESETS: TrialModel[] = [
     patientName: 'Anônimo',
     therapistName: 'Daiane',
     sceneTitle: 'Investigação Clínica Emocional',
-    welcomeText: 'Prezado paciente, este é um gabarito clínico confidencial desenhado para guiar nossa investigação e integração de memórias difíceis do passado, promovendo a reconstrução da sua voz.',
+    welcomeText: 'Prezado paciente, este gabarito terapêutico estruturado serve de mapa para guiar o acolhimento, a escuta e a organização interna de experiências dolorosas do passado. Avance conforme se sentir confortável, respeitando as reações do seu corpo. Seus registros permanecem guardados sob total sigilo local.',
     q4Label: '4. Quantos anos você tinha na cena que quer investigar ou integrar?',
     q5Label: '5. O que aconteceu antes de culminar no pior momento? (Contexto)',
     q5Placeholder: 'Descreva os fatos que geraram a crise, discussões anteriores ou o contexto do trauma...',
@@ -500,7 +500,7 @@ Miss. ${tName} • Terapeuta Emocional`;
         senteCorpo: 'Garganta seca, palpitação peitoral angustiante.',
         idadeCena: '8 anos',
         antesEnforcamento: 'Havia quebrado involuntariamente um instrumento de trabalho e fui repreendido corporalmente pelo pai de modo excessivo.',
-        pensamentoMomento: 'Eu vou morrer asfixiado e ninguém vai me defender. Eu mereço de algum jeito.',
+        pensamentoMomento: 'Eu vou morrer sufocado e ninguém vai me defender. Eu mereço de algum jeito.',
         piorParteCena: 'Sentir o ar faltar nos meus pulmões enquanto meu pai mantinha as mãos no meu pescoço com cólera.',
         maisDoeu: ['O enforcamento?', 'Não ser ouvido?', 'O medo?'],
         maisDoeuOutro: '',
@@ -511,7 +511,7 @@ Miss. ${tName} • Terapeuta Emocional`;
         sentiuInjustica: 'Alta',
         emocaoMaisForte: 'Medo',
         queriaDizer: 'Pai, eu sou só uma criança, pare por favor!',
-        paiTivesseFeito: 'Me acolhido, explicado o erro sem me infligir asfixia física.',
+        paiTivesseFeito: 'Me acolhido, explicado o erro sem me infligir violência física.',
         precisavaOuvir: 'Vai ficar tudo bem, meu filho, você errou mas eu te amo.',
         presoCoracao: 'A dor silenciada de achar que minha vida dependia da fúria irreprimível do meu pai.',
         aprendeuSobreVoce: 'Que eu era fraco, indefeso e totalmente culpável por qualquer erro.',
@@ -520,7 +520,7 @@ Miss. ${tName} • Terapeuta Emocional`;
         mudouDentro: 'Sim, tornei-me vigilante, extremamente calado e com extrema fobia de desapontar autoridades.',
         tentouExplicar: 'Tentei mas me calaram',
         ninguemQuisOuvir: 'Totalmente',
-        quandoMandamCalar: 'Sinto asfixia automática na laringe, calafrios e tremores somáticos.',
+        quandoMandamCalar: 'Sinto aperto automático na laringe, calafrios e tremores somáticos.',
         primeiraVezNaoAcreditava: 'Nesse dia traumático, onde nenhum irmão contestou o castigo abusivo.',
         exercicioPrecisava: 'Alguém que segurasse minha mão e me retirasse dali.',
         exercicioQueriaDizer: 'Eu sou inocente do tamanho da dor que você me deu.',
@@ -532,7 +532,7 @@ Miss. ${tName} • Terapeuta Emocional`;
         id: 'demo-2',
         date: new Date().toISOString(), // Today
         notaCena: 2,
-        sentePrimeiro: 'Uma melancolia leve, porém sem reações físicas de asfixia.',
+        sentePrimeiro: 'Uma melancolia leve, porém sem reações físicas de opressão.',
         senteCorpo: 'Sinto o pescoço leve e relaxado.',
         idadeCena: '8 anos',
         antesEnforcamento: 'Encontro traumático da infância.',
@@ -758,11 +758,17 @@ Miss. ${tName} • Terapeuta Emocional`;
               {customSceneTitle || 'Investigação Clínica Emocional'}
             </h2>
             <p className="text-slate-350 text-xs sm:text-sm leading-relaxed max-w-4xl">
-              {customWelcomeText || 'Gabarito confidencial guiando nosso processo de mapeamento emocional, trazendo à luz feridas de infância e permitindo integrá-las de modo seguro e definitivo.'}
+              {customWelcomeText || 'Gabarito de mapeamento clínico e reorganização afetiva, desenhado estruturadamente para guiar o resgate da voz interior e promover a consolidação somatossensorial ativa.'}
             </p>
 
-            <div className="bg-white/5 px-4 py-2.5 rounded-xl border border-white/5 text-[11px] sm:text-xs text-rose-350/90 leading-relaxed max-w-4xl">
-              💡 <b>Garantia de Neutralidade de Tela:</b> Como preconizado pela terapeuta {customTherapistName}, todos os indicadores de trauma e reações físicas iniciam <b>completamente limpos e desmarcados</b>. A tomada de escolha é estritamente neutra e realizada pelo paciente.
+            <div className="bg-white/5 p-4.5 rounded-2xl border border-white/10 text-[11px] sm:text-xs text-rose-350/90 leading-relaxed max-w-4xl space-y-1.5 backdrop-blur-xs">
+              <div className="flex items-center gap-1.5 font-bold text-rose-300">
+                <ShieldCheck className="w-4 h-4 shrink-0 text-rose-400" />
+                <span>Protocolo de Neutralidade de Tela & Escuta Transparente</span>
+              </div>
+              <p className="text-slate-300 font-medium">
+                Conforme preconizado pela terapeuta <b>{customTherapistName || 'Daiane'}</b>, todas as opções, indicadores somatossensoriais e escalas emocionais começam <b>completamente limpos e desmarcados</b>. Esse rigor metodológico elimina vieses ou induções precoces, preservando integralmente a autonomia e a voz soberana do paciente para mapear sua vivência exatamente como ela se manifesta.
+              </p>
             </div>
 
 
@@ -905,7 +911,7 @@ Miss. ${tName} • Terapeuta Emocional`;
                             id="sente-primeiro-input"
                             value={sentePrimeiro}
                             onChange={(e) => setSentePrimeiro(e.target.value)}
-                            placeholder="Ex: Nó na garganta, angústia, pânico, asfixia..."
+                            placeholder="Ex: Nó na garganta, angústia, pânico, sufocamento..."
                             className="w-full rounded-xl border border-slate-200 p-3 text-xs focus:outline-hidden focus:ring-2 focus:ring-rose-200 bg-white shadow-3xs"
                           />
                         </div>
@@ -1555,7 +1561,7 @@ Miss. ${tName} • Terapeuta Emocional`;
                             rows={4}
                             value={mensagemThiagoPassado}
                             onChange={(e) => setMensagemThiagoPassado(e.target.value)}
-                            placeholder={customQ27Placeholder || "Abra seu coração por inteiro. Ofereça proteção, valide que não foi culpa dele, liberte-o daquela asfixia..."}
+                            placeholder={customQ27Placeholder || "Abra seu coração por inteiro. Ofereça proteção, valide que não foi culpa dele, liberte-o daquela opressão..."}
                             className="w-full rounded-2xl border border-rose-200 bg-white p-4 text-xs focus:outline-hidden focus:ring-2 focus:ring-rose-200 italic leading-relaxed"
                           />
                         </div>
