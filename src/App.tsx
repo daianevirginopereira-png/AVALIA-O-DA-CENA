@@ -59,7 +59,7 @@ const CLINICAL_PRESETS: TrialModel[] = [
     patientName: 'Thiago',
     therapistName: 'Daiane',
     sceneTitle: 'Investigação da Cena do Enforcamento',
-    welcomeText: 'Thiago, daremos início juntos a um espaço seguro e de extrema confidencialidade. Este mapeamento clínico destina-se a orientar e estruturar a escuta atenta das memórias de bloqueio emocional e dor somática do passado. Siga à sua medida e de forma gradual por cada etapa, respeitando seus limites. Suas respostas são salvas com total privacidade e serão organizadas ao final para apoiar nosso caminho de ressignificação.',
+    welcomeText: 'Thiago, criamos este espaço totalmente seguro e confidencial para você. Ele vai ajudar você a lembrar, organizar e cuidar das memórias difíceis de bloqueio emocional e de dor física que ficaram no passado. Vá com calma, no seu próprio tempo e respeitando seus limites. Tudo o que você responder é guardado em segredo absoluto e será arrumado no final para apoiar o seu processo de cura.',
     q4Label: '4. Quantos anos você tinha na cena do enforcamento?',
     q5Label: '5. O que aconteceu antes do enforcamento? (Contexto)',
     q5Placeholder: 'Relate o que disparou o castigo ou o confronto: brincadeiras, discussões, quebra de objetos...',
@@ -79,7 +79,7 @@ const CLINICAL_PRESETS: TrialModel[] = [
     patientName: 'Julia',
     therapistName: 'Daiane',
     sceneTitle: 'Investigação do Abandono Paterno',
-    welcomeText: 'Julia, este acolhimento clínico investigativo foi projetado para guiar a integração consciente das dores da rejeição e do afastamento afetivo paterno na infância. Permita-se olhar para a solidão do passado com olhos de autocompaixão, restaurando seu valor individual de maneira inteiramente segura, confidencial e integrada.',
+    welcomeText: 'Julia, este espaço seguro foi feito para ajudar você a acolher de forma leve e carinhosa as dores da rejeição e da distância do seu pai na infância. Olhe para a menininha do passado com carinho e compaixão, lembrando do seu real valor. Tudo é totalmente privado, seguro e confidencial.',
     q4Label: '4. Quantos anos você tinha quando ocorreu o abandono ou afastamento?',
     q5Label: '5. O que aconteceu nos dias anteriores ao afastamento? (Contexto)',
     q5Placeholder: 'Relate o clima em casa: brigas entre os pais, malas prontas, avisos prévios ou distância inexplicável...',
@@ -99,7 +99,7 @@ const CLINICAL_PRESETS: TrialModel[] = [
     patientName: 'Matheus',
     therapistName: 'Daiane',
     sceneTitle: 'Investigação de Humilhação Escolar',
-    welcomeText: 'Matheus, daremos início juntos à investigação das feridas ligadas à vergonha pública, ao silenciamento compulsório e aos impactos somáticos da exclusão social sofrida perante o ambiente acadêmico ou colegas. Preencha no seu próprio tempo, tendo a certeza de estar sob absoluto sigilo.',
+    welcomeText: 'Matheus, criamos este espaço seguro para ajudar você a olhar de forma tranquila para as feridas de vergonha, do silêncio forçado e da exclusão que você sofreu na escola por parte dos colegas. Responda com calma, no seu próprio tempo, sabendo que tudo o que for escrito aqui fica em segredo absoluto.',
     q4Label: '4. Quantos anos você tinha na cena daquela humilhação perante o grupo?',
     q5Label: '5. O que desencadeou a ridicularização ou a crise na escola? (Contexto)',
     q5Placeholder: 'Ex: Errar uma questão no quadro, julgamentos das roupas, boatos, exclusão de grupos ou bronca do professor...',
@@ -107,7 +107,7 @@ const CLINICAL_PRESETS: TrialModel[] = [
     q16Placeholder: 'Ex: Que a professora me acolhesse, que amigos chamassem os inspetores, que me dessem abrigo contra o bullying...',
     q20Label: '20. O que você aprendeu sobre o professor ou os colegas naquele dia de pavor?',
     q20Placeholder: "Ex: 'O grupo é perigoso', 'Falar em público é sofrer castigo', 'Ninguém me apoia no erro'...",
-    q27Label: 'Imagine que aquele Matheus assustado e acuado daquele dia do bullying está bem na sua frente agora. Ele clama por socorro...',
+    q27Label: 'Imagine que aquele Matheus assustado e acuado daquele dia do bullying está bem na sua frente agora. He clama por socorro...',
     q27Placeholder: "Assegure que ele é inteligente, que você vai defendê-lo de qualquer acusação e que a hostilidade alheia não mede o valor dele...",
     heartExerciseContext: 'focalize a memória daquela sala de aula hostil e complete os espaços vazios:',
     maisDoeuOptions: ['As risadas dos colegas?', 'A omissão dos adultos?', 'A vergonha do erro?', 'O sentimento de inferioridade?', 'Outra coisa?'],
@@ -119,7 +119,7 @@ const CLINICAL_PRESETS: TrialModel[] = [
     patientName: 'Anônimo',
     therapistName: 'Daiane',
     sceneTitle: 'Investigação Clínica Emocional',
-    welcomeText: 'Prezado paciente, este gabarito terapêutico estruturado serve de mapa para guiar o acolhimento, a escuta e a organização interna de experiências dolorosas do passado. Avance conforme se sentir confortável, respeitando as reações do seu corpo. Seus registros permanecem guardados sob total sigilo local.',
+    welcomeText: 'Olá! Este formulário foi criado com carinho para ser um guia seguro onde você pode organizar, desabafar e acolher experiências difíceis do passado. Avance apenas quando se sentir confortável, respeitando o ritmo do seu corpo. Seus registros permanecem guardados em total segredo.',
     q4Label: '4. Quantos anos você tinha na cena que quer investigar ou integrar?',
     q5Label: '5. O que aconteceu antes de culminar no pior momento? (Contexto)',
     q5Placeholder: 'Descreva os fatos que geraram a crise, discussões anteriores ou o contexto do trauma...',
@@ -285,19 +285,19 @@ export default function App() {
     const tName = session.modelTherapistName || customTherapistName || 'Daiane';
 
     return `🧠 ${sTitle.toUpperCase()} – ${pName.toUpperCase()}
-📋 Prontuário de Integração Emocional e Ressignificação (15 Perguntas Clínicas)
+📋 Guia de Cuidado e Desabafo Emocional (15 Perguntas da Sessão)
 
 📅 Emissão: ${formattedDate}
 --------------------------------------------------
 
-🔴 SEÇÃO 1: IMPACTO ATUAL & ESTADO CORPORAL
+🔴 SEÇÃO 1: IMPACTO HOJE E REAÇÕES NO CORPO
 1. Nota de desconforto/incômodo ao lembrar do trauma hoje (0 a 10):
 👉 Nota: ${session.notaCena !== undefined && session.notaCena !== null ? session.notaCena : 'Não avaliada'} / 10
 
 2. Reação inicial e reflexos corporais / somáticos ao lembrar:
 👉 Primeiro Reflexo: ${session.sentePrimeiro || 'Não respondido'}
 👉 Localização no Corpo: ${session.senteCorpo || 'Não respondido'}
-👉 Reações Somatossensoriais: ${bodyPartsReadable}
+👉 Partes do Corpo Afetadas: ${bodyPartsReadable}
 
 --------------------------------------------------
 
@@ -319,8 +319,8 @@ export default function App() {
 
 --------------------------------------------------
 
-🟡 SEÇÃO 3: COMPLEXO EMOCIONAL & DINÂMICA ATIVA
-8. Sentimento íntimo e geral vivido no trauma (Raiva, Tristeza, Injustiça integrados):
+🟡 SEÇÃO 3: SENTIMENTOS E EMOÇÕES
+8. Sentimento íntimo e geral vivido no trauma:
 👉 Sentido no Íntimo: ${session.sentiuMomento || 'Não respondido'}
 
 9. Intensidades emocionais gerais e predominância:
@@ -332,7 +332,7 @@ export default function App() {
 
 --------------------------------------------------
 
-🟢 SEÇÃO 4: A VOZ SILENCIADA & ECO DO PASSADO
+🟢 SEÇÃO 4: O QUE FICOU SILENCIADO E REAÇÕES NO PRESENTE
 10. Voz silenciada e sentimentos retidos no coração:
 👉 O que queria dizer mas não conseguiu: ${session.queriaDizer || 'Não respondido'}
 👉 O que ficou realmente preso no coração: ${session.presoCoracao || 'Não respondido'}
@@ -347,26 +347,26 @@ export default function App() {
 
 --------------------------------------------------
 
-🔵 SEÇÃO 5: CRENÇAS PROFUNDAS & DIÁLOGO DE CURA
+🔵 SEÇÃO 5: CONCLUSÕES APRENDIDAS E DIÁLOGO DE CURA
 13. Diretrizes assimiladas na sobrevivência (Crenças geradas):
 👉 Sobre si: ${session.aprendeuSobreVoce || 'Não respondido'}
 👉 Sobre quem feriu (Agressor): ${session.aprendeuSobrePai || 'Não respondido'}
 👉 Sobre as pessoas no geral: ${session.aprendeuSobrePessoas || 'Não respondido'}
 
-14. Mudança estrutural de essência e desejos profundos:
+14. Mudança de essência e desejos profundos:
 👉 O que mudou dentro de você desde aquele dia: ${session.mudouDentro || 'Não respondido'}
 👉 O que gostaria que tivessem feito: ${session.paiTivesseFeito || 'Não respondido'}
 👉 O que mais precisava ouvir naquele amargo momento: ${session.precisavaOuvir || 'Não respondido'}
 
-15. Exercício de Cura & Reintegração Restaurativa:
+15. Exercício de Cuidado & Conversa com sua Versão Mais Jovem:
 ✨ "Naquele dia eu precisava de..." 👉 ${session.exercicioPrecisava || 'Não respondido'}
 ✨ "Naquele dia eu queria dizer..." 👉 ${session.exercicioQueriaDizer || 'Não respondido'}
 ✨ "Até hoje o que mais me machuca é..." 👉 ${session.exercicioMaisMachuca || 'Não respondido'}
 👉 Diálogo com Criança/Adolescente Interior: "${session.mensagemThiagoPassado || 'Não respondido'}"
 
 --------------------------------------------------
-Relatório Clínico Formatado para Arquivamento Terapêutico.
-Miss. ${tName} • Terapeuta Emocional`;
+Resumo da sessão formatado com carinho.
+Terapeuta Emocional: Miss. ${tName}`;
   };
 
   // Dispatch message to WhatsApp
@@ -758,16 +758,16 @@ Miss. ${tName} • Terapeuta Emocional`;
               {customSceneTitle || 'Investigação Clínica Emocional'}
             </h2>
             <p className="text-slate-350 text-xs sm:text-sm leading-relaxed max-w-4xl">
-              {customWelcomeText || 'Gabarito de mapeamento clínico e reorganização afetiva, desenhado estruturadamente para guiar o resgate da voz interior e promover a consolidação somatossensorial ativa.'}
+              {customWelcomeText || 'Um espaço seguro para você organizar seus pensamentos, acolher suas memórias e dar uma nova leveza para o seu passado, tudo no seu próprio tempo.'}
             </p>
 
-            <div className="bg-white/5 p-4.5 rounded-2xl border border-white/10 text-[11px] sm:text-xs text-rose-350/90 leading-relaxed max-w-4xl space-y-1.5 backdrop-blur-xs">
+            <div className="bg-white/5 p-4 py-3.5 rounded-2xl border border-white/10 text-[11px] sm:text-xs text-slate-300 leading-relaxed max-w-4xl space-y-1 backdrop-blur-xs">
               <div className="flex items-center gap-1.5 font-bold text-rose-300">
                 <ShieldCheck className="w-4 h-4 shrink-0 text-rose-400" />
-                <span>Protocolo de Neutralidade de Tela & Escuta Transparente</span>
+                <span>Compromisso de Tela Limpa (Suas Escolhas Importam)</span>
               </div>
-              <p className="text-slate-300 font-medium">
-                Conforme preconizado pela terapeuta <b>{customTherapistName || 'Daiane'}</b>, todas as opções, indicadores somatossensoriais e escalas emocionais começam <b>completamente limpos e desmarcados</b>. Esse rigor metodológico elimina vieses ou induções precoces, preservando integralmente a autonomia e a voz soberana do paciente para mapear sua vivência exatamente como ela se manifesta.
+              <p className="text-slate-350 font-medium">
+                Como ensina a terapeuta <b>{customTherapistName || 'Daiane'}</b>, todas as perguntas, opções de sentimentos e partes do corpo começam em branco e desmarcadas. Fizemos isso para que nenhuma sugestão ou palpite prévio influencie você. Assim, você tem total liberdade para escolher e contar a sua história exatamente como você a sente.
               </p>
             </div>
 
@@ -1412,7 +1412,7 @@ Miss. ${tName} • Terapeuta Emocional`;
                     <div className="bg-slate-50 border border-slate-205 p-4 rounded-xl text-xs text-slate-600 leading-relaxed gap-2.5 flex items-start">
                       <AlertCircle className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
                       <span>
-                        <b>Ressignificação Cognitivo-Emocional:</b> Diante das maiores dores, fixamos as crenças inconscientes geradas e realizamos a reintegração restaurativa com o seu interior.
+                        <b>Transformando Dor em Aprendizado:</b> Nesta etapa final, vamos olhar de perto para as ideias e pensamentos silenciosos que criamos sobre nós mesmos naquele dia difícil, ajudando a confortar o nosso coração e trazer mais paz.
                       </span>
                     </div>
 
