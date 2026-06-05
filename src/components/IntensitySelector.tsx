@@ -7,10 +7,18 @@ interface IntensitySelectorProps {
   value: IntensityLevel | '';
   onChange: (val: IntensityLevel) => void;
   options: IntensityLevel[];
-  iconType: 'cena' | 'corpo' | 'injustica' | 'raiva' | 'magoa' | 'medo' | 'tristeza';
+  iconType: 'cena' | 'corpo' | 'injustica' | 'raiva' | 'magoa' | 'medo' | 'tristeza' | 'trio';
 }
 
 const getExplanation = (type: string, option: IntensityLevel): string => {
+  if (type === 'trio') {
+    switch (option) {
+      case 'Alta': return 'Combinação de injustiça, raiva e tristeza profunda';
+      case 'Média': return 'Sentimentos nítidos de revolta, dor e mágoa';
+      case 'Baixa': return 'Sensibilidade leve ao recordar a injustiça sofrida';
+      case 'Nenhuma': return 'Sentimentos dissolvidos, paz e aceitação madura';
+    }
+  }
   if (type === 'cena') {
     switch (option) {
       case 'Alta': return 'Incomoda muito, lembrança forte';
@@ -85,6 +93,8 @@ export default function IntensitySelector({
         return <ShieldAlert className="w-5 h-5 text-rose-600" />;
       case 'tristeza':
         return <HelpCircle className="w-5 h-5 text-slate-400" />;
+      case 'trio':
+        return <Scale className="w-5 h-5 text-indigo-500 animate-pulse" />;
       default:
         return <ShieldAlert className="w-5 h-5 text-slate-500" />;
     }

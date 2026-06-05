@@ -243,8 +243,6 @@ export default function App() {
       setCustomQ20Placeholder(activePreset.q20Placeholder);
       setCustomQ27Label(activePreset.q27Label);
       setCustomQ27Placeholder(activePreset.q27Placeholder);
-      setCustomHeartExerciseContext(activePreset.heartExerciseContext);
-      setCurrentMaisDoeuOptions(activePreset.maisDoeuOptions);
     }
   }, [selectedModelId]);
 
@@ -287,126 +285,87 @@ export default function App() {
     const tName = session.modelTherapistName || customTherapistName || 'Daiane';
 
     return `🧠 ${sTitle.toUpperCase()} – ${pName.toUpperCase()}
-📋 Prontuário de Integração Emocional e Ressignificação
+📋 Prontuário de Integração Emocional e Ressignificação (15 Perguntas Clínicas)
 
 📅 Emissão: ${formattedDate}
 --------------------------------------------------
 
-🔴 ANTES DE ENTRAR NA CENA
-1. Quando você lembra dessa cena hoje, qual nota ela tem de 0 a 10?
-👉 Nota: ${session.notaCena !== undefined && session.notaCena !== null ? session.notaCena : 'Não avaliado'} / 10
+🔴 SEÇÃO 1: IMPACTO ATUAL & ESTADO CORPORAL
+1. Nota de desconforto/incômodo ao lembrar do trauma hoje (0 a 10):
+👉 Nota: ${session.notaCena !== undefined && session.notaCena !== null ? session.notaCena : 'Não avaliada'} / 10
 
-2. O que você sente primeiro quando lembra dela?
-👉 ${session.sentePrimeiro || 'Não respondido'}
-
-3. Onde você sente isso no corpo?
-👉 ${session.senteCorpo || 'Não respondido'}
-👉 [Reações Somatossensoriais: ${bodyPartsReadable}]
+2. Reação inicial e reflexos corporais / somáticos ao lembrar:
+👉 Primeiro Reflexo: ${session.sentePrimeiro || 'Não respondido'}
+👉 Localização no Corpo: ${session.senteCorpo || 'Não respondido'}
+👉 Reações Somatossensoriais: ${bodyPartsReadable}
 
 --------------------------------------------------
 
-🟠 ENTRANDO NA CENA
-4. Quantos anos você tinha?
-👉 ${session.idadeCena || 'Não respondido'}
+🟠 SEÇÃO 2: HISTÓRICO & NARRATIVA DO ACONTECIMENTO
+3. Idade na época do acontecimento:
+👉 Idade: ${session.idadeCena || 'Não respondida'} anos
 
-5. O que aconteceu antes? (Contexto)
-👉 ${session.antesEnforcamento || 'Não respondido'}
+4. Disparador e o que aconteceu antes:
+👉 Contexto Histórico: ${session.antesEnforcamento || 'Não respondido'}
 
-6. O que você estava pensando naquele momento?
-👉 ${session.pensamentoMomento || 'Não respondido'}
+5. Pensamento dominante no exato momento do ápice:
+👉 Pensamento no Ápice: ${session.pensamentoMomento || 'Não respondido'}
 
-7. Qual foi a pior parte da cena?
-👉 ${session.piorParteCena || 'Não respondido'}
+6. A pior parte de toda a cena vivida:
+👉 Pior Parte da Cena: ${session.piorParteCena || 'Não respondida'}
 
-8. O que mais doeu:
-👉 ${maisDoeuOutput || 'Não selecionado'}
-
---------------------------------------------------
-
-🟡 EMOÇÕES
-9. O que você sentiu naquele momento?
-👉 ${session.sentiuMomento || 'Não respondido'}
-
-10. Você sentiu medo?
-👉 ${session.sentiuMedo || 'Não selecionado'}
-
-11. Você sentiu raiva?
-👉 ${session.sentiuRaiva || 'Não selecionado'}
-
-12. Você sentiu tristeza?
-👉 ${session.sentiuTristeza || 'Não selecionado'}
-
-13. Você sentiu injustiça?
-👉 ${session.sentiuInjustica || 'Não selecionado'}
-
-14. Qual dessas emoções era a mais forte?
-👉 ${session.emocaoMaisForte || 'Não selecionado'}
+7. O que mais doeu em você no acontecimento doloroso:
+👉 Foco de Dor: ${maisDoeuOutput || 'Não selecionado'}
 
 --------------------------------------------------
 
-🟢 O QUE FICOU GUARDADO
-15. O que você queria dizer e não conseguiu?
-👉 ${session.queriaDizer || 'Não respondido'}
+🟡 SEÇÃO 3: COMPLEXO EMOCIONAL & DINÂMICA ATIVA
+8. Sentimento íntimo e geral vivido no trauma (Raiva, Tristeza, Injustiça integrados):
+👉 Sentido no Íntimo: ${session.sentiuMomento || 'Não respondido'}
 
-16. O que você gostaria que tivessem feito em seu lugar?
-👉 ${session.paiTivesseFeito || 'Não respondido'}
-
-17. O que você precisava ouvir naquele momento?
-👉 ${session.precisavaOuvir || 'Não respondido'}
-
-18. O que ficou preso dentro do seu coração?
-👉 ${session.presoCoracao || 'Não respondido'}
+9. Intensidades emocionais gerais e predominância:
+👉 Medo: ${session.sentiuMedo || 'Não respondido'}
+👉 Raiva: ${session.sentiuRaiva || 'Não respondida'}
+👉 Tristeza: ${session.sentiuTristeza || 'Não respondida'}
+👉 Injustiça: ${session.sentiuInjustica || 'Não respondida'}
+👉 Sentimento Predominante: ${session.emocaoMaisForte || 'Não selecionado'}
 
 --------------------------------------------------
 
-🔵 A CRENÇA
-19. O que você aprendeu sobre você naquele dia?
-👉 ${session.aprendeuSobreVoce || 'Não respondido'}
+🟢 SEÇÃO 4: A VOZ SILENCIADA & ECO DO PASSADO
+10. Voz silenciada e sentimentos retidos no coração:
+👉 O que queria dizer mas não conseguiu: ${session.queriaDizer || 'Não respondido'}
+👉 O que ficou realmente preso no coração: ${session.presoCoracao || 'Não respondido'}
 
-20. O que você aprendeu sobre quem te feriu?
-👉 ${session.aprendeuSobrePai || 'Não respondido'}
+11. O silenciamento e a falta de defesa no momento:
+👉 Tentativa de se explicar: ${session.tentouExplicar || 'Não respondido'}
+👉 Sensação de escuta (Ninguém quis ouvir): ${session.ninguemQuisOuvir || 'Não respondido'}
 
-21. O que você aprendeu sobre as pessoas naquele dia?
-👉 ${session.aprendeuSobrePessoas || 'Não respondido'}
-
-22. Depois dessa situação, algo mudou dentro de você?
-👉 ${session.mudouDentro || 'Não respondido'}
-
---------------------------------------------------
-
-🟣 A VOZ QUE FOI CALADA
-23. Você tentou se explicar?
-👉 ${session.tentouExplicar || 'Não respondido'}
-
-24. Você sentiu que ninguém quis ouvir sua versão?
-👉 ${session.ninguemQuisOuvir || 'Não respondido'}
-
-25. Como é para você quando mandam você ficar calado?
-👉 ${session.quandoMandamCalar || 'Não respondido'}
-
-26. Qual foi a primeira vez que você sentiu que ninguém acreditava em você?
-👉 ${session.primeiraVezNaoAcreditava || 'Não respondido'}
+12. Ecos e marcas reativas de silenciamento no seu presente:
+👉 Primeira vez que sentiu descrença: ${session.primeiraVezNaoAcreditava || 'Não respondido'}
+👉 Impacto atual ao ser mandado calar: ${session.quandoMandamCalar || 'Não respondido'}
 
 --------------------------------------------------
 
-❤️ EXERCÍCIO DO CORAÇÃO
-✨ "Naquele dia eu precisava de..."
-👉 ${session.exercicioPrecisava || 'Não respondido'}
+🔵 SEÇÃO 5: CRENÇAS PROFUNDAS & DIÁLOGO DE CURA
+13. Diretrizes assimiladas na sobrevivência (Crenças geradas):
+👉 Sobre si: ${session.aprendeuSobreVoce || 'Não respondido'}
+👉 Sobre quem feriu (Agressor): ${session.aprendeuSobrePai || 'Não respondido'}
+👉 Sobre as pessoas no geral: ${session.aprendeuSobrePessoas || 'Não respondido'}
 
-✨ "Naquele dia eu queria dizer..."
-👉 ${session.exercicioQueriaDizer || 'Não respondido'}
+14. Mudança estrutural de essência e desejos profundos:
+👉 O que mudou dentro de você desde aquele dia: ${session.mudouDentro || 'Não respondido'}
+👉 O que gostaria que tivessem feito: ${session.paiTivesseFeito || 'Não respondido'}
+👉 O que mais precisava ouvir naquele amargo momento: ${session.precisavaOuvir || 'Não respondido'}
 
-✨ "Até hoje o que mais me machuca é..."
-👉 ${session.exercicioMaisMachuca || 'Não respondido'}
+15. Exercício de Cura & Reintegração Restaurativa:
+✨ "Naquele dia eu precisava de..." 👉 ${session.exercicioPrecisava || 'Não respondido'}
+✨ "Naquele dia eu queria dizer..." 👉 ${session.exercicioQueriaDizer || 'Não respondido'}
+✨ "Até hoje o que mais me machuca é..." 👉 ${session.exercicioMaisMachuca || 'Não respondido'}
+👉 Diálogo com Criança/Adolescente Interior: "${session.mensagemThiagoPassado || 'Não respondido'}"
 
 --------------------------------------------------
-
-🎯 PERGUNTA FINAL
-💬 Se aquele ${pName} daquele dia estivesse deitado ou sentado na sua frente agora, o que você diria para ele?
-👉 "${session.mensagemThiagoPassado || 'Não respondido'}"
-
---------------------------------------------------
-Relatório Clínico Gerado para Arquivamento Terapêutico.
+Relatório Clínico Formatado para Arquivamento Terapêutico.
 Miss. ${tName} • Terapeuta Emocional`;
   };
 
@@ -611,22 +570,19 @@ Miss. ${tName} • Terapeuta Emocional`;
     alert('Simulação clínica de progresso carregada de forma excelente. Explore os gráficos de controle e o histórico!');
   };
 
-  // Step names translation
+  // Step names translation - consolidated into 5 thematic cohorts
   const stepsList = [
-    { num: 1, title: 'Antes de Entrar', desc: 'Sua relação atual com a memória' },
-    { num: 2, title: 'Entrando na Cena', desc: 'Detalhamento do acontecimento' },
-    { num: 3, title: 'Suas Emoções', desc: 'Intensidades das feridas' },
-    { num: 4, title: 'O que ficou Guardado', desc: 'Palavras reprimidas no coração' },
-    { num: 5, title: 'Crenças Formadas', desc: 'Aprendizados tirados do trauma' },
-    { num: 6, title: 'A Voz Calada', desc: 'Sentimentos de escuta e verdade' },
-    { num: 7, title: 'Exercício do Coração', desc: 'Completar lacunas em transe' },
-    { num: 8, title: 'Frase de Acolhimento', desc: 'Mensagem de cura para si de outrora' },
+    { num: 1, title: 'Impacto & Corpo', desc: 'Relação atual e reações corporais (Perguntas 1-2)' },
+    { num: 2, title: 'A Cena do Trauma', desc: 'Acontecimento, contexto e narrativa (Perguntas 3-7)' },
+    { num: 3, title: 'Emoções Dolorosas', desc: 'Conjunto emocional e intensidade (Perguntas 8-9)' },
+    { num: 4, title: 'A Voz Silenciada', desc: 'Voz calada, retida e impactos reativos (Perguntas 10-12)' },
+    { num: 5, title: 'Crenças & Cura', desc: 'Crenças profundas e diálogo de acolhimento (Perguntas 13-15)' },
   ];
 
-  const currentStepData = stepsList[currentStep - 1];
+  const currentStepData = stepsList[currentStep - 1] || stepsList[0];
 
   const scrollToSection = (secNum: number) => {
-    if (secNum >= 1 && secNum <= 8) {
+    if (secNum >= 1 && secNum <= 5) {
       setCurrentStep(secNum);
       const container = document.getElementById('continuous-questions-scroll-container');
       const element = document.getElementById(`secao-${secNum}`);
@@ -644,7 +600,7 @@ Miss. ${tName} • Terapeuta Emocional`;
     const container = e.currentTarget;
     const scrollPos = container.scrollTop + 140; // anchor scroll trigger offset
     
-    for (let i = 1; i <= 8; i++) {
+    for (let i = 1; i <= 5; i++) {
       const element = document.getElementById(`secao-${i}`);
       if (element) {
         const topPos = element.offsetTop - container.offsetTop;
@@ -870,17 +826,17 @@ Miss. ${tName} • Terapeuta Emocional`;
                   className="max-h-[640px] overflow-y-auto pr-3.5 space-y-10 scroll-smooth custom-scrollbar pb-6"
                 >
 
-                  {/* STEP 1: ANTES DE ENTRAR NA CENA */}
+                  {/* STEP 1: IMPACTO ATUAL & ESTADO CORPORAL */}
                   <div className="space-y-6 bg-white p-5 rounded-2xl border border-slate-200 shadow-3xs scroll-mt-2" id="secao-1">
                     <div className="flex items-center gap-2 pb-2.5 border-b border-rose-100">
                       <span className="w-6 h-6 rounded-lg bg-rose-50 text-rose-600 font-extrabold text-[12px] flex items-center justify-center font-sans shrink-0">1</span>
-                      <h4 className="font-bold text-slate-800 text-xs sm:text-sm uppercase tracking-wider font-sans leading-none mt-0.5">Antes de Entrar na Cena</h4>
+                      <h4 className="font-bold text-slate-800 text-xs sm:text-sm uppercase tracking-wider font-sans leading-none mt-0.5">Impacto Atual & Estado Corporal</h4>
                     </div>
 
                     <div className="bg-rose-50/50 border border-rose-100/40 p-4 rounded-2xl flex gap-3 text-xs leading-relaxed text-rose-800">
                       <AlertCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
                       <div>
-                        <b>Antes de re-observarmos a memória física:</b> Avaliaremos o impacto somatossensorial e a intensidade residual que a lembrança retém em você atualmente antes de descascarmos as camadas adjacentes.
+                        <b>Mapeamento Semântico Somatossensorial:</b> Avaliaremos o impacto imediato e a nota residual que essa lembrança desperta no seu corpo atualmente.
                       </div>
                     </div>
 
@@ -901,12 +857,12 @@ Miss. ${tName} • Terapeuta Emocional`;
                               className={`w-9 h-9 rounded-xl font-bold text-xs sm:text-sm transition-all duration-150 flex items-center justify-center cursor-pointer shrink-0 ${
                                 isSelected
                                   ? score >= 8
-                                    ? 'bg-rose-600 text-white shadow-3xs ring-2 ring-rose-200'
+                                    ? 'bg-rose-600 text-white ring-2 ring-rose-200'
                                     : score >= 5
-                                    ? 'bg-amber-500 text-white shadow-3xs ring-2 ring-amber-200'
+                                    ? 'bg-amber-500 text-white ring-2 ring-amber-200'
                                     : score >= 2
-                                    ? 'bg-blue-600 text-white shadow-3xs ring-2 ring-blue-250'
-                                    : 'bg-emerald-600 text-white shadow-3xs ring-2 ring-emerald-200'
+                                    ? 'bg-blue-600 text-white ring-2 ring-blue-250'
+                                    : 'bg-emerald-600 text-white ring-2 ring-emerald-200'
                                   : 'bg-white border border-slate-200 hover:bg-slate-50 text-slate-500 font-semibold'
                               }`}
                             >
@@ -922,131 +878,147 @@ Miss. ${tName} • Terapeuta Emocional`;
                       </div>
                     </div>
 
-                    {/* Question 2: sentePrimeiro */}
-                    <div className="space-y-2">
-                      <label className="block text-sm font-bold text-slate-705">
-                        2. O que você sente primeiro quando lembra dela?
+                    {/* Unified Somatic Perceptions */}
+                    <div className="bg-slate-50/50 p-4 rounded-xl border border-slate-205 space-y-4">
+                      <label className="block text-sm font-bold text-slate-700 leading-relaxed">
+                        2. O que você sente primeiro quando lembra dela e onde/como seu corpo reage física ou emocionalmente?
                       </label>
-                      <input
-                        type="text"
-                        id="sente-primeiro-input"
-                        value={sentePrimeiro}
-                        onChange={(e) => setSentePrimeiro(e.target.value)}
-                        placeholder="Ex: Nó na garganta, angústia extrema, falta de ar, injustiça..."
-                        className="w-full rounded-2xl border border-slate-200 p-3.5 text-sm focus:outline-hidden focus:ring-2 focus:ring-rose-300 bg-white"
-                      />
-                    </div>
-
-                    {/* Question 3: senteCorpo & SensationSelector mapper */}
-                    <div className="space-y-4 pt-2 border-t border-slate-100">
-                      <SensationSelector
-                        selectedParts={corpoReage}
-                        onChange={setCorpoReage}
-                      />
-
-                      <div className="space-y-2">
-                        <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                          Informações adicionais do local do corpo onde sente (Opcional):
+                      
+                      <div className="space-y-1">
+                        <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest font-sans">
+                          Aperte nos locais do diagrama somatossensório:
                         </label>
-                        <input
-                          type="text"
-                          id="sente-corpo-input"
-                          value={senteCorpo}
-                          onChange={(e) => setSenteCorpo(e.target.value)}
-                          placeholder="Ex: Aperto em cima do peito ao lado direito; asfixia real profunda..."
-                          className="w-full rounded-2xl border border-slate-200 p-3 text-sm focus:outline-hidden focus:ring-2 focus:ring-rose-200 bg-white"
+                        <SensationSelector
+                          selectedParts={corpoReage}
+                          onChange={setCorpoReage}
                         />
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                        {/* Question 2 sub: sentePrimeiro */}
+                        <div className="space-y-1">
+                          <label className="block text-xs font-bold text-slate-700">
+                            Qual o seu primeiro reflexo emocional:
+                          </label>
+                          <input
+                            type="text"
+                            id="sente-primeiro-input"
+                            value={sentePrimeiro}
+                            onChange={(e) => setSentePrimeiro(e.target.value)}
+                            placeholder="Ex: Nó na garganta, angústia, pânico, asfixia..."
+                            className="w-full rounded-xl border border-slate-200 p-3 text-xs focus:outline-hidden focus:ring-2 focus:ring-rose-200 bg-white shadow-3xs"
+                          />
+                        </div>
+
+                        {/* Question 2 sub: senteCorpo */}
+                        <div className="space-y-1">
+                          <label className="block text-xs font-bold text-slate-700">
+                            Descrição detalhada do local físico onde reside a dor:
+                          </label>
+                          <input
+                            type="text"
+                            id="sente-corpo-input"
+                            value={senteCorpo}
+                            onChange={(e) => setSenteCorpo(e.target.value)}
+                            placeholder="Ex: Aperto em cima do peito ao lado direito; garganta fechada..."
+                            className="w-full rounded-xl border border-slate-200 p-3 text-xs focus:outline-hidden focus:ring-2 focus:ring-rose-200 bg-white shadow-3xs"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* STEP 2: ENTRANDO NA CENA */}
+                  {/* STEP 2: A CENA DO TRAUMA */}
                   <div className="space-y-5 bg-white p-5 rounded-2xl border border-slate-200 shadow-3xs scroll-mt-2" id="secao-2">
                     <div className="flex items-center gap-2 pb-2.5 border-b border-rose-100">
                       <span className="w-6 h-6 rounded-lg bg-rose-50 text-rose-600 font-extrabold text-[12px] flex items-center justify-center font-sans shrink-0">2</span>
-                      <h4 className="font-bold text-slate-800 text-xs sm:text-sm uppercase tracking-wider font-sans leading-none mt-0.5">Entrando na Cena</h4>
+                      <h4 className="font-bold text-slate-800 text-xs sm:text-sm uppercase tracking-wider font-sans leading-none mt-0.5">Narrativa & Contexto do Acontecimento</h4>
                     </div>
 
-                    {/* Question 4: idadeCena */}
-                    <div className="space-y-2">
-                      <label className="block text-sm font-bold text-slate-705">
-                        4. Quantos anos você tinha na época desse acontecimento?
-                      </label>
-                      <div className="flex flex-wrap gap-2 mb-2">
-                        {(CLINICAL_PRESETS.find(p => p.id === selectedModelId)?.suggestedAges || ['6 anos', '8 anos', '10 anos', '12 anos', '15 anos']).map((age) => (
-                          <button
-                            key={age}
-                            type="button"
-                            onClick={() => setIdadeCena(age)}
-                            className={`px-3 py-1.5 text-xs rounded-xl border font-bold cursor-pointer transition-all ${
-                              idadeCena === age
-                                ? 'bg-slate-800 text-white border-slate-800'
-                                : 'bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100'
-                            }`}
-                          >
-                            {age}
-                          </button>
-                        ))}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      {/* Question 3: idadeCena */}
+                      <div className="space-y-1 col-span-1">
+                        <label className="block text-xs font-bold text-slate-700">
+                          3. Quantos anos você tinha na época desse trauma?
+                        </label>
+                        <input
+                          type="text"
+                          id="idade-cena-input"
+                          value={idadeCena}
+                          onChange={(e) => setIdadeCena(e.target.value)}
+                          placeholder="Ex: 15 anos..."
+                          className="w-full rounded-xl border border-slate-200 p-3 text-xs focus:ring-2 focus:ring-rose-200 focus:outline-hidden bg-white shadow-3xs"
+                        />
+                        <div className="flex flex-wrap gap-1 mt-1.5">
+                          {(CLINICAL_PRESETS.find(p => p.id === selectedModelId)?.suggestedAges || ['6 anos', '8 anos', '10 anos', '12 anos', '15 anos']).slice(0, 3).map((age) => (
+                            <button
+                              key={age}
+                              type="button"
+                              onClick={() => setIdadeCena(age)}
+                              className={`px-2 py-1 text-[10px] rounded-lg border font-bold cursor-pointer transition-all ${
+                                idadeCena === age
+                                  ? 'bg-slate-850 text-white border-slate-850'
+                                  : 'bg-slate-50 border-slate-200 text-slate-500 hover:bg-slate-100'
+                              }`}
+                            >
+                              {age}
+                            </button>
+                          ))}
+                        </div>
                       </div>
-                      <input
-                        type="text"
-                        id="idade-cena-input"
-                        value={idadeCena}
-                        onChange={(e) => setIdadeCena(e.target.value)}
-                        placeholder="Insira a idade ou outra informação de período..."
-                        className="w-full rounded-2xl border border-slate-200 p-3 text-sm focus:ring-2 focus:ring-rose-300 focus:outline-hidden bg-white"
-                      />
+
+                      {/* Question 4: antesEnforcamento */}
+                      <div className="space-y-1 col-span-1 md:col-span-2">
+                        <label className="block text-xs font-bold text-slate-700">
+                          {customQ5Label ? customQ5Label.replace(/^\d+\.\s*/, '') : '4. O que aconteceu antes? (Disparador e contextos históricos)'}
+                        </label>
+                        <textarea
+                          id="antes-enforcamento-textarea"
+                          rows={2.5}
+                          value={antesEnforcamento}
+                          onChange={(e) => setAntesEnforcamento(e.target.value)}
+                          placeholder={customQ5Placeholder || "Relate o que desencadeou o confronto ou castigo: brincadeiras, desentendimentos, falhas, pressões escolares..."}
+                          className="w-full rounded-xl border border-slate-200 p-3 text-xs focus:ring-2 focus:ring-rose-200 focus:outline-hidden leading-relaxed bg-white shadow-3xs"
+                        />
+                      </div>
                     </div>
 
-                    {/* Question 5: antesEnforcamento */}
-                    <div className="space-y-2">
-                      <label className="block text-sm font-bold text-slate-700">
-                        {customQ5Label || '5. O que aconteceu antes? (Contexto)'}
-                      </label>
-                      <textarea
-                        id="antes-enforcamento-textarea"
-                        rows={3}
-                        value={antesEnforcamento}
-                        onChange={(e) => setAntesEnforcamento(e.target.value)}
-                        placeholder={customQ5Placeholder || "Relate o que disparou o castigo ou o confronto: brincadeiras, discussões, quebra de objetos..."}
-                        className="w-full rounded-2xl border border-slate-200 p-3.5 text-sm focus:ring-2 focus:ring-rose-300 focus:outline-hidden leading-relaxed bg-white"
-                      />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-slate-100 pt-3 w-full">
+                      {/* Question 5: pensamentoMomento */}
+                      <div className="space-y-1">
+                        <label className="block text-xs font-bold text-slate-700">
+                          5. O que você estava pensando naquele exato momento do trauma?
+                        </label>
+                        <textarea
+                          id="pensamento-momento-textarea"
+                          rows={3.5}
+                          value={pensamentoMomento}
+                          onChange={(e) => setPensamentoMomento(e.target.value)}
+                          placeholder="Ex: 'Por que ele está agindo assim?', 'Eu não vou conseguir respirar', 'Estou sozinho contra o mundo'..."
+                          className="w-full rounded-xl border border-slate-200 p-3 text-xs focus:ring-2 focus:ring-rose-200 focus:outline-hidden leading-relaxed bg-white shadow-3xs"
+                        />
+                      </div>
+
+                      {/* Question 6: piorParteCena */}
+                      <div className="space-y-1">
+                        <label className="block text-xs font-bold text-slate-700">
+                          6. Qual foi a pior parte de toda a cena vivida?
+                        </label>
+                        <textarea
+                          id="pior-parte-cena-textarea"
+                          rows={3.5}
+                          value={piorParteCena}
+                          onChange={(e) => setPiorParteCena(e.target.value)}
+                          placeholder="Refira-se ao ápice do pavor, do medo do sufocamento ou da sensação de humilhação familiar..."
+                          className="w-full rounded-xl border border-slate-200 p-3 text-xs focus:ring-2 focus:ring-rose-200 focus:outline-hidden leading-relaxed bg-white shadow-3xs"
+                        />
+                      </div>
                     </div>
 
-                    {/* Question 6: pensamentoMomento */}
-                    <div className="space-y-2">
-                      <label className="block text-sm font-bold text-slate-700">
-                        6. O que você estava pensando naquele momento exato?
-                      </label>
-                      <textarea
-                        id="pensamento-momento-textarea"
-                        rows={3}
-                        value={pensamentoMomento}
-                        onChange={(e) => setPensamentoMomento(e.target.value)}
-                        placeholder="Pensamento no momento exato. Ex: 'Por que ele está fazendo isso?', 'Não vou aguentar respirar', 'Estou sozinho e vulnerável'..."
-                        className="w-full rounded-2xl border border-slate-200 p-3.5 text-sm focus:ring-2 focus:ring-rose-300 focus:outline-hidden leading-relaxed bg-white"
-                      />
-                    </div>
-
-                    {/* Question 7: piorParteCena */}
-                    <div className="space-y-2">
-                      <label className="block text-sm font-bold text-slate-700">
-                        7. Qual foi a pior parte da cena?
-                      </label>
-                      <textarea
-                        id="pior-parte-cena-textarea"
-                        rows={3}
-                        value={piorParteCena}
-                        onChange={(e) => setPiorParteCena(e.target.value)}
-                        placeholder="O ápice do pavor ou da vergonha..."
-                        className="w-full rounded-2xl border border-slate-200 p-3.5 text-sm focus:ring-2 focus:ring-rose-300 focus:outline-hidden leading-relaxed bg-white"
-                      />
-                    </div>
-
-                    {/* Question 8: maisDoeu */}
+                    {/* Question 7: maisDoeu */}
                     <div className="space-y-3 pt-3 border-t border-slate-100">
-                      <label className="block text-sm font-bold text-slate-705">
-                        8. O que mais doeu em você naquele momento? (Marque todos que aplicar)
+                      <label className="block text-xs font-bold text-slate-700">
+                        7. O que mais doeu em você naquele momento doloroso? (Marque todos que se aplicam)
                       </label>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         {currentMaisDoeuOptions.map((opt) => {
@@ -1062,7 +1034,7 @@ Miss. ${tName} • Terapeuta Emocional`;
                                   setMaisDoeu([...maisDoeu, opt]);
                                 }
                               }}
-                              className={`p-3.5 rounded-xl border text-[13px] font-bold text-left transition-all relative flex items-center justify-between cursor-pointer ${
+                              className={`p-3 rounded-xl border text-xs font-bold text-left transition-all relative flex items-center justify-between cursor-pointer ${
                                 isSelected
                                   ? 'bg-rose-50 border-rose-450 text-rose-900 border-2'
                                   : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'
@@ -1085,8 +1057,8 @@ Miss. ${tName} • Terapeuta Emocional`;
 
                       {/* Outra coisa text input */}
                       {maisDoeu.includes('Outra coisa?') && (
-                        <div className="mt-2 animate-fade-in space-y-2">
-                          <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                        <div className="mt-2 animate-fade-in space-y-1">
+                          <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                             Especifique o que mais machucou naquele momento:
                           </label>
                           <input
@@ -1094,94 +1066,167 @@ Miss. ${tName} • Terapeuta Emocional`;
                             id="mais-doeu-outro"
                             value={maisDoeuOutro}
                             onChange={(e) => setMaisDoeuOutro(e.target.value)}
-                            placeholder="Ex: O silêncio da minha família assistindo sem intervir..."
-                            className="w-full rounded-2xl border border-slate-200 p-3 text-sm focus:ring-2 focus:ring-rose-200 focus:outline-hidden bg-white"
+                            placeholder="Ex: O silêncio complacente da minha família assistindo sem intervir..."
+                            className="w-full rounded-xl border border-slate-200 p-2 text-xs focus:ring-2 focus:ring-rose-200 focus:outline-hidden bg-white shadow-3xs"
                           />
                         </div>
                       )}
                     </div>
                   </div>
 
-                  {/* STEP 3: EMOÇÕES */}
+                  {/* STEP 3: EMOÇÕES DOLOROSAS */}
                   <div className="space-y-5 bg-white p-5 rounded-2xl border border-slate-200 shadow-3xs scroll-mt-2" id="secao-3">
                     <div className="flex items-center gap-2 pb-2.5 border-b border-rose-100">
                       <span className="w-6 h-6 rounded-lg bg-rose-50 text-rose-600 font-extrabold text-[12px] flex items-center justify-center font-sans shrink-0">3</span>
-                      <h4 className="font-bold text-slate-800 text-xs sm:text-sm uppercase tracking-wider font-sans leading-none mt-0.5">Suas Emoções</h4>
+                      <h4 className="font-bold text-slate-800 text-xs sm:text-sm uppercase tracking-wider font-sans leading-none mt-0.5">Emoções Dolorosas</h4>
                     </div>
 
-                    {/* Question 9: sentiuMomento */}
-                    <div className="space-y-2">
-                      <label className="block text-sm font-bold text-slate-700">
-                        9. O que você sentiu naquele momento no seu íntimo? (Sentimentos)
-                      </label>
-                      <div className="flex flex-wrap gap-2 py-1">
-                        {PRESET_EMOTIONS.map((emotion) => (
-                          <button
-                            key={emotion.label}
-                            type="button"
-                            onClick={() => {
-                              const currentVal = sentiuMomento;
-                              if (!currentVal.includes(emotion.label)) {
-                                setSentiuMomento(currentVal ? `${currentVal}, ${emotion.label}` : emotion.label);
-                              }
-                            }}
-                            className={`px-3 py-1 text-xs rounded-xl border focus:outline-hidden hover:scale-105 active:scale-95 transition-all text-[11px] font-bold ${emotion.color} cursor-pointer`}
-                          >
-                            + {emotion.label}
-                          </button>
-                        ))}
+                    {/* Question 8: sentiuMomento (Emotional Overviews) */}
+                    <div className="space-y-4 w-full">
+                      <div className="space-y-2">
+                        <label className="block text-sm font-bold text-slate-700">
+                          8. O que você sentiu de forma geral naquele momento no seu íntimo? (Sentimentos gerais)
+                        </label>
+                        <div className="flex flex-wrap gap-2 py-1">
+                          {PRESET_EMOTIONS.map((emotion) => (
+                            <button
+                              key={emotion.label}
+                              type="button"
+                              onClick={() => {
+                                const currentVal = sentiuMomento;
+                                if (!currentVal.includes(emotion.label)) {
+                                  setSentiuMomento(currentVal ? `${currentVal}, ${emotion.label}` : emotion.label);
+                                }
+                              }}
+                              className={`px-3 py-1 text-xs rounded-xl border focus:outline-hidden hover:scale-105 active:scale-95 transition-all text-[11px] font-bold ${emotion.color} cursor-pointer`}
+                            >
+                              + {emotion.label}
+                            </button>
+                          ))}
+                        </div>
+                        <textarea
+                          id="sentiu-momento-textarea"
+                          rows={2.5}
+                          value={sentiuMomento}
+                          onChange={(e) => setSentiuMomento(e.target.value)}
+                          placeholder="Assinale os sentimentos acima para somar ou relate com suas próprias palavras..."
+                          className="w-full rounded-xl border border-slate-200 p-3 text-xs focus:ring-2 focus:ring-rose-300 focus:outline-hidden leading-relaxed bg-white shadow-3xs"
+                        />
                       </div>
-                      <textarea
-                        id="sentiu-momento-textarea"
-                        rows={3}
-                        value={sentiuMomento}
-                        onChange={(e) => setSentiuMomento(e.target.value)}
-                        placeholder="Assinale os sentimentos acima para somar ou relate com suas próprias palavras..."
-                        className="w-full rounded-2xl border border-slate-200 p-3.5 text-sm focus:ring-2 focus:ring-rose-300 focus:outline-hidden leading-relaxed bg-white"
-                      />
-                    </div>
 
-                    <div className="pt-2 space-y-5">
-                      {/* Question 10: sentiuMedo */}
-                      <IntensitySelector
-                        label="10. Você sentiu medo?"
-                        value={sentiuMedo}
-                        onChange={setSentiuMedo}
-                        options={['Alta', 'Média', 'Baixa', 'Nenhuma']}
-                        iconType="medo"
-                      />
+                      {/* Question 9: sentiuMedo (Intensity of Fear) */}
+                      <div className="pt-3 border-t border-slate-100 space-y-3">
+                        <label className="block text-sm font-bold text-slate-700">
+                          9. Você sentiu medo naquele momento do trauma? (Intensidade do Medo)
+                        </label>
+                        <div className="max-w-md p-3 bg-rose-50/20 border border-rose-100 rounded-xl">
+                          <span className="font-bold text-xs text-rose-700 flex items-center gap-1.5 mb-2.5">😨 Medalha de Medo</span>
+                          <div className="grid grid-cols-4 gap-1">
+                            {['Alta', 'Média', 'Baixa', 'Nenhuma'].map((opt) => {
+                              const isSelected = sentiuMedo === opt;
+                              return (
+                                <button
+                                  key={opt}
+                                  type="button"
+                                  onClick={() => setSentiuMedo(opt as any)}
+                                  className={`py-1.5 rounded-lg text-[11px] font-bold cursor-pointer transition-all ${
+                                    isSelected
+                                      ? 'bg-rose-500 text-white shadow-3xs'
+                                      : 'bg-white border border-slate-200 hover:bg-slate-50 text-slate-500'
+                                  }`}
+                                >
+                                  {opt}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
 
-                      {/* Question 11: sentiuRaiva */}
-                      <IntensitySelector
-                        label="11. Você sentiu raiva?"
-                        value={sentiuRaiva}
-                        onChange={setSentiuRaiva}
-                        options={['Alta', 'Média', 'Baixa', 'Nenhuma']}
-                        iconType="raiva"
-                      />
+                      {/* Question 10: Unified Anger, Sadness, Injustice */}
+                      <div className="pt-3 border-t border-slate-100 space-y-3">
+                        <label className="block text-sm font-bold text-slate-700 leading-relaxed">
+                          10. Qual a intensidade da Raiva, Tristeza e Injustiça que você sentiu naquele momento?
+                        </label>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+                          {/* Anger scale */}
+                          <div className="p-3 bg-slate-50/50 border border-slate-200 rounded-xl flex flex-col justify-between">
+                            <span className="font-bold text-xs text-slate-700 flex items-center gap-1.5 mb-2.5">😡 Nível de Raiva</span>
+                            <div className="grid grid-cols-4 gap-1">
+                              {['Alta', 'Média', 'Baixa', 'Nenhuma'].map((opt) => {
+                                const isSelected = sentiuRaiva === opt;
+                                return (
+                                  <button
+                                    key={opt}
+                                    type="button"
+                                    onClick={() => setSentiuRaiva(opt as any)}
+                                    className={`py-1.5 rounded-lg text-[11px] font-bold cursor-pointer transition-all ${
+                                      isSelected
+                                        ? 'bg-amber-500 text-white shadow-3xs'
+                                        : 'bg-white border border-slate-200 hover:bg-slate-50 text-slate-500'
+                                    }`}
+                                  >
+                                    {opt}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
 
-                      {/* Question 12: sentiuTristeza */}
-                      <IntensitySelector
-                        label="12. Você sentiu tristeza?"
-                        value={sentiuTristeza}
-                        onChange={setSentiuTristeza}
-                        options={['Alta', 'Média', 'Baixa', 'Nenhuma']}
-                        iconType="tristeza"
-                      />
+                          {/* Sadness scale */}
+                          <div className="p-3 bg-slate-50/50 border border-slate-200 rounded-xl flex flex-col justify-between">
+                            <span className="font-bold text-xs text-slate-700 flex items-center gap-1.5 mb-2.5">😢 Carga de Tristeza</span>
+                            <div className="grid grid-cols-4 gap-1">
+                              {['Alta', 'Média', 'Baixa', 'Nenhuma'].map((opt) => {
+                                const isSelected = sentiuTristeza === opt;
+                                return (
+                                  <button
+                                    key={opt}
+                                    type="button"
+                                    onClick={() => setSentiuTristeza(opt as any)}
+                                    className={`py-1.5 rounded-lg text-[11px] font-bold cursor-pointer transition-all ${
+                                      isSelected
+                                        ? 'bg-slate-750 text-white shadow-3xs'
+                                        : 'bg-white border border-slate-200 hover:bg-slate-50 text-slate-500'
+                                    }`}
+                                  >
+                                    {opt}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
 
-                      {/* Question 13: sentiuInjustica */}
-                      <IntensitySelector
-                        label="13. Você sentiu injustiça?"
-                        value={sentiuInjustica}
-                        onChange={setSentiuInjustica}
-                        options={['Alta', 'Média', 'Baixa', 'Nenhuma']}
-                        iconType="injustica"
-                      />
+                          {/* Injustice scale */}
+                          <div className="p-3 bg-slate-50/50 border border-slate-200 rounded-xl flex flex-col justify-between">
+                            <span className="font-bold text-xs text-slate-700 flex items-center gap-1.5 mb-2.5">⚖️ Sentimento de Injustiça</span>
+                            <div className="grid grid-cols-4 gap-1">
+                              {['Alta', 'Média', 'Baixa', 'Nenhuma'].map((opt) => {
+                                const isSelected = sentiuInjustica === opt;
+                                return (
+                                  <button
+                                    key={opt}
+                                    type="button"
+                                    onClick={() => setSentiuInjustica(opt as any)}
+                                    className={`py-1.5 rounded-lg text-[11px] font-bold cursor-pointer transition-all ${
+                                      isSelected
+                                        ? 'bg-slate-600 text-white shadow-3xs'
+                                        : 'bg-white border border-slate-200 hover:bg-slate-50 text-slate-500'
+                                    }`}
+                                  >
+                                    {opt}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
-                      {/* Question 14: emocaoMaisForte */}
+                      {/* Question 11: Strongest Emotion choice */}
                       <div className="space-y-3 pt-3 border-t border-slate-100">
                         <label className="block text-sm font-bold text-slate-700">
-                          14. Qual dessas emoções era a mais forte naquele exato momento do trauma?
+                          11. Qual dessas emoções (Medo, Raiva, Tristeza, Injustiça) era a mais forte naquele exato momento do trauma?
                         </label>
                         <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
                           {['Medo', 'Raiva', 'Tristeza', 'Injustiça', 'Nenhuma'].map((emo) => {
@@ -1191,7 +1236,7 @@ Miss. ${tName} • Terapeuta Emocional`;
                                 key={emo}
                                 type="button"
                                 onClick={() => setEmocaoMaisForte(emo)}
-                                className={`px-3 py-3 rounded-xl border text-xs sm:text-sm font-bold transition-all text-center cursor-pointer ${
+                                className={`px-3 py-2 rounded-xl border text-xs font-bold transition-all text-center cursor-pointer ${
                                   isChosen
                                     ? 'bg-rose-500 border-rose-500 text-white shadow-3xs'
                                     : 'bg-white border-slate-250 text-slate-600 hover:bg-slate-50'
@@ -1206,335 +1251,315 @@ Miss. ${tName} • Terapeuta Emocional`;
                     </div>
                   </div>
 
-                  {/* STEP 4: O QUE FICOU GUARDADO */}
-                  <div className="space-y-4 bg-white p-5 rounded-2xl border border-slate-200 shadow-3xs scroll-mt-2" id="secao-4">
+                  {/* SEÇÃO 4: A VOZ SILENCIADA & ECO DO PASSADO */}
+                  <div className="space-y-5 bg-white p-5 rounded-2xl border border-slate-200 shadow-3xs scroll-mt-2" id="secao-4">
                     <div className="flex items-center gap-2 pb-2.5 border-b border-rose-100">
                       <span className="w-6 h-6 rounded-lg bg-rose-50 text-rose-600 font-extrabold text-[12px] flex items-center justify-center font-sans shrink-0">4</span>
-                      <h4 className="font-bold text-slate-800 text-xs sm:text-sm uppercase tracking-wider font-sans leading-none mt-0.5">O que ficou Guardado</h4>
+                      <h4 className="font-bold text-slate-800 text-xs sm:text-sm uppercase tracking-wider font-sans leading-none mt-0.5">A Voz Silenciada & Ecos Atuais</h4>
                     </div>
 
-                    {/* Question 15: queriaDizer */}
-                    <div className="space-y-2">
-                      <label className="block text-sm font-bold text-slate-705">
-                        15. O que você queria dizer e não conseguiu / não teve forças naquele momento?
-                      </label>
-                      <textarea
-                        id="queria-dizer-textarea"
-                        rows={3}
-                        value={queriaDizer}
-                        onChange={(e) => setQueriaDizer(e.target.value)}
-                        placeholder="As palavras sufocadas: 'Eu sou apenas uma criança', 'Me perdoa', 'Por que você está agindo assim?'..."
-                        className="w-full rounded-2xl border border-slate-200 p-3.5 text-sm focus:ring-2 focus:ring-rose-300 focus:outline-hidden leading-relaxed bg-white"
-                      />
+                    <div className="bg-rose-50/40 border border-rose-100/30 p-4 rounded-xl text-xs text-rose-800 leading-relaxed gap-2.5 flex items-start">
+                      <Heart className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
+                      <span>
+                        <b>Voz Interrompida & Reflexos Reativos:</b> Investigamos as feridas da expressão sufocada, o silenciamento e as marcas reativas que reverberam no seu presente.
+                      </span>
                     </div>
 
-                    {/* Question 16: paiTivesseFeito */}
-                    <div className="space-y-2">
-                      <label className="block text-sm font-bold text-slate-700">
-                        {customQ16Label || '16. O que você gostaria que tivessem feito em seu lugar?'}
-                      </label>
-                      <textarea
-                        id="pai-tivesse-feito-textarea"
-                        rows={3}
-                        value={paiTivesseFeito}
-                        onChange={(e) => setPaiTivesseFeito(e.target.value)}
-                        placeholder={customQ16Placeholder || "Ex: Que me apoiassem, ensinassem com paciência, mostrassem carinho..."}
-                        className="w-full rounded-2xl border border-slate-200 p-3.5 text-sm focus:ring-2 focus:ring-rose-300 focus:outline-hidden leading-relaxed bg-white"
-                      />
-                    </div>
+                    <div className="space-y-4">
+                      {/* Question 10: Voz Silenciada & Sentimentos Retidos no Coração (queriaDizer & presoCoracao) */}
+                      <div className="space-y-3">
+                        <label className="block text-xs font-extrabold text-rose-600 uppercase tracking-widest font-sans">
+                          10. Voz Silenciada & Sentimentos Retidos no Coração
+                        </label>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="space-y-1">
+                            <label className="block text-xs font-bold text-slate-700">O que você queria dizer e não conseguiu / não teve forças naquele momento?</label>
+                            <textarea
+                              id="queria-dizer-textarea"
+                              rows={3}
+                              value={queriaDizer}
+                              onChange={(e) => setQueriaDizer(e.target.value)}
+                              placeholder="As palavras sufocadas: 'Eu sou apenas uma criança', 'Chega, isso dói', 'Não foi culpa minha'..."
+                              className="w-full rounded-xl border border-slate-200 p-3 text-xs focus:ring-2 focus:ring-rose-200 focus:outline-hidden leading-relaxed bg-white shadow-3xs"
+                            />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="block text-xs font-bold text-slate-700">O que ficou de fato preso dentro do seu coração desde aquele dia?</label>
+                            <textarea
+                              id="preso-coracao-textarea"
+                              rows={3}
+                              value={presoCoracao}
+                              onChange={(e) => setPresoCoracao(e.target.value)}
+                              placeholder="Ex: Uma raiva acumulada, medo constante de rejeição, sensação crônica de desamparo..."
+                              className="w-full rounded-xl border border-slate-200 p-3 text-xs focus:ring-2 focus:ring-rose-200 focus:outline-hidden leading-relaxed bg-white shadow-3xs"
+                            />
+                          </div>
+                        </div>
+                      </div>
 
-                    {/* Question 17: precisavaOuvir */}
-                    <div className="space-y-2">
-                      <label className="block text-sm font-bold text-slate-700">
-                        17. O que você mais precisava ouvir naquele doloroso momento?
-                      </label>
-                      <textarea
-                        id="precisava-ouvir-textarea"
-                        rows={3}
-                        value={precisavaOuvir}
-                        onChange={(e) => setPrecisavaOuvir(e.target.value)}
-                        placeholder="Mensagem restauradora: 'Calma, você está seguro', 'Isso vai passar', 'Não foi culpa sua'..."
-                        className="w-full rounded-2xl border border-slate-200 p-3.5 text-sm focus:ring-2 focus:ring-rose-300 focus:outline-hidden leading-relaxed bg-white"
-                      />
-                    </div>
+                      {/* Question 11: O Silenciamento e a Falta de Defesa (tentouExplicar & ninguemQuisOuvir) */}
+                      <div className="border-t border-slate-100 pt-3 space-y-3">
+                        <label className="block text-xs font-extrabold text-rose-600 uppercase tracking-widest font-sans">
+                          11. O Silenciamento & Falta de Defesa
+                        </label>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="space-y-2">
+                            <label className="block text-xs font-bold text-slate-700">
+                              Você tentou se explicar ou se manifestar no momento?
+                            </label>
+                            <div className="flex gap-1.5 py-1">
+                              {['Sim', 'Não', 'Tentei mas me calaram'].map((opt) => (
+                                <button
+                                  key={opt}
+                                  type="button"
+                                  onClick={() => setTentouExplicar(opt)}
+                                  className={`flex-1 py-1.5 px-2 rounded-xl border text-[10px] font-bold cursor-pointer transition-all ${
+                                    tentouExplicar === opt
+                                      ? 'bg-rose-50 border-rose-500 text-rose-800 border-2'
+                                      : 'bg-slate-50 border-slate-200 text-slate-500 hover:bg-slate-100'
+                                  }`}
+                                >
+                                  {opt}
+                                </button>
+                              ))}
+                            </div>
+                            <input
+                              type="text"
+                              value={tentouExplicar}
+                              onChange={(e) => setTentouExplicar(e.target.value)}
+                              placeholder="Ou detalhe..."
+                              className="w-full rounded-xl border border-slate-205 p-2 bg-white text-xs focus:ring-2 focus:ring-rose-200 focus:outline-hidden"
+                            />
+                          </div>
 
-                    {/* Question 18: presoCoracao */}
-                    <div className="space-y-2">
-                      <label className="block text-sm font-bold text-slate-700">
-                        18. O que ficou de fato preso dentro do seu coração desde aquele dia?
-                      </label>
-                      <textarea
-                        id="preso-coracao-textarea"
-                        rows={3}
-                        value={presoCoracao}
-                        onChange={(e) => setPresoCoracao(e.target.value)}
-                        placeholder="Aquela ferida crônica que ficou trancada por anos no fundo do peito..."
-                        className="w-full rounded-2xl border border-slate-200 p-3.5 text-sm focus:ring-2 focus:ring-rose-300 focus:outline-hidden leading-relaxed bg-white"
-                      />
+                          <div className="space-y-2">
+                            <label className="block text-xs font-bold text-slate-700">
+                              Você sentiu que de fato ninguém quis ouvir a sua versão do que houve?
+                            </label>
+                            <div className="flex gap-1.5 py-1">
+                              {['Totalmente', 'Um pouco', 'Não, me ouviram'].map((opt) => (
+                                <button
+                                  key={opt}
+                                  type="button"
+                                  onClick={() => setNinguemQuisOuvir(opt)}
+                                  className={`flex-1 py-1.5 px-2 rounded-xl border text-[10px] font-bold cursor-pointer transition-all ${
+                                    ninguemQuisOuvir === opt
+                                      ? 'bg-rose-50 border-rose-500 text-rose-800 border-2'
+                                      : 'bg-slate-50 border-slate-200 text-slate-500 hover:bg-slate-100'
+                                  }`}
+                                >
+                                  {opt}
+                                </button>
+                              ))}
+                            </div>
+                            <input
+                              type="text"
+                              value={ninguemQuisOuvir}
+                              onChange={(e) => setNinguemQuisOuvir(e.target.value)}
+                              placeholder="Como foi a reação do entorno..."
+                              className="w-full rounded-xl border border-slate-205 p-2 bg-white text-xs focus:ring-2 focus:ring-rose-200 focus:outline-hidden"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Question 12: Ecos e Marcas Atuais (primeiraVezNaoAcreditava & quandoMandamCalar) */}
+                      <div className="border-t border-slate-100 pt-3 space-y-3">
+                        <label className="block text-xs font-extrabold text-rose-600 uppercase tracking-widest font-sans">
+                          12. Ecos & Marcas no Seu Presente
+                        </label>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="space-y-1">
+                            <label className="block text-xs font-bold text-slate-700">Qual foi a primeira vez que sentiu que de fato ninguém acreditava em você?</label>
+                            <textarea
+                              id="primeira-vez-nao-acreditava-textarea"
+                              rows={2.5}
+                              value={primeiraVezNaoAcreditava}
+                              onChange={(e) => setPrimeiraVezNaoAcreditava(e.target.value)}
+                              placeholder="Se foi nesse dia ou se remonta a algum acontecimento anterior..."
+                              className="w-full rounded-xl border border-slate-200 p-3 text-xs focus:ring-2 focus:ring-rose-200 focus:outline-hidden leading-relaxed bg-white shadow-3xs"
+                            />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="block text-xs font-bold text-slate-700">Como é para você hoje no presente quando mandam você ficar calado?</label>
+                            <textarea
+                              id="quando-mandam-calar-textarea"
+                              rows={2.5}
+                              value={quandoMandamCalar}
+                              onChange={(e) => setQuandoMandamCalar(e.target.value)}
+                              placeholder="Ex: Dispara pânico no peito, vontade de sumir/gritar, ansiedade alta..."
+                              className="w-full rounded-xl border border-slate-200 p-3 text-xs focus:ring-2 focus:ring-rose-200 focus:outline-hidden leading-relaxed bg-white shadow-3xs"
+                            />
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
-                  {/* STEP 5: A CRENÇA */}
-                  <div className="space-y-4 bg-white p-5 rounded-2xl border border-slate-200 shadow-3xs scroll-mt-2" id="secao-5">
+                  {/* STEP 5: CRENÇAS & DIÁLOGO DE CURA */}
+                  <div className="space-y-5 bg-white p-5 rounded-2xl border border-slate-200 shadow-3xs scroll-mt-2" id="secao-5">
                     <div className="flex items-center gap-2 pb-2.5 border-b border-rose-100">
                       <span className="w-6 h-6 rounded-lg bg-rose-50 text-rose-600 font-extrabold text-[12px] flex items-center justify-center font-sans shrink-0">5</span>
-                      <h4 className="font-bold text-slate-800 text-xs sm:text-sm uppercase tracking-wider font-sans leading-none mt-0.5">Crenças Formadas</h4>
+                      <h4 className="font-bold text-slate-800 text-xs sm:text-sm uppercase tracking-wider font-sans leading-none mt-0.5">Crenças & Diálogo de Cura</h4>
                     </div>
 
-                    <div className="bg-slate-50 border border-slate-200 p-4 rounded-xl text-xs text-slate-500 leading-relaxed gap-2.5 flex items-start">
+                    <div className="bg-slate-50 border border-slate-205 p-4 rounded-xl text-xs text-slate-600 leading-relaxed gap-2.5 flex items-start">
                       <AlertCircle className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
                       <span>
-                        <b>A crença inconsciente:</b> No momento de um sofrimento agudo, a mente de uma criança cria "verdades absolutas" para sobreviver. Elas moldam os comportamentos de toda a vida adulta.
+                        <b>Ressignificação Cognitivo-Emocional:</b> Diante das maiores dores, fixamos as crenças inconscientes geradas e realizamos a reintegração restaurativa com o seu interior.
                       </span>
                     </div>
 
-                    {/* Question 19: aprendeuSobreVoce */}
-                    <div className="space-y-2">
-                      <label className="block text-sm font-bold text-slate-700">
-                        19. O que você aprendeu sobre você após aquele dia? (Ex: 'Eu sou culpado por tudo')
-                      </label>
-                      <input
-                        type="text"
-                        id="aprendeu-sobre-voce"
-                        value={aprendeuSobreVoce}
-                        onChange={(e) => setAprendeuSobreVoce(e.target.value)}
-                        placeholder="Crenças geradas. Ex: 'Eu não sou digno de ser ouvido', 'Se eu errar, sou descartado'..."
-                        className="w-full rounded-2xl border border-slate-200 p-3.5 text-sm focus:ring-2 focus:ring-rose-300 focus:outline-hidden bg-white"
-                      />
-                    </div>
+                    <div className="space-y-4">
+                      {/* Question 13: Crenças de Sobrevivência (aprendeuSobreVoce, aprendeuSobrePai, aprendeuSobrePessoas) */}
+                      <div className="space-y-3">
+                        <label className="block text-xs font-extrabold text-rose-600 uppercase tracking-widest font-sans">
+                          13. O que você assimilou com essa situação? (Suas crenças silenciosas)
+                        </label>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <div className="space-y-1">
+                            <label className="block text-xs font-bold text-slate-700">Crença inconsciente sobre si:</label>
+                            <input
+                              type="text"
+                              id="aprendeu-sobre-voce"
+                              value={aprendeuSobreVoce}
+                              onChange={(e) => setAprendeuSobreVoce(e.target.value)}
+                              placeholder="Ex: 'Eu sou culpado se cometer erros', 'Não sou digno'..."
+                              className="w-full rounded-xl border border-slate-200 p-3 text-xs focus:ring-2 focus:ring-rose-200 focus:outline-hidden bg-white shadow-3xs"
+                            />
+                          </div>
 
-                    {/* Question 20: aprendeuSobrePai */}
-                    <div className="space-y-2">
-                      <label className="block text-sm font-bold text-slate-705">
-                        {customQ20Label || '20. O que você aprendeu sobre o seu pai naquele dia do enforcamento?'}
-                      </label>
-                      <input
-                        type="text"
-                        id="aprendeu-sobre-pai"
-                        value={aprendeuSobrePai}
-                        onChange={(e) => setAprendeuSobrePai(e.target.value)}
-                        placeholder={customQ20Placeholder || "Ex: 'Ele é instável', 'Não posso confiar', 'O amor dói'..."}
-                        className="w-full rounded-2xl border border-slate-200 p-3.5 text-sm focus:ring-2 focus:ring-rose-300 focus:outline-hidden bg-white"
-                      />
-                    </div>
+                          <div className="space-y-1">
+                            <label className="block text-xs font-bold text-slate-700">
+                              {customQ20Label ? customQ20Label.replace(/^\d+\.\s*/, '') : 'Crença sobre quem te feriu (Agressor):'}
+                            </label>
+                            <input
+                              type="text"
+                              id="aprendeu-sobre-pai"
+                              value={aprendeuSobrePai}
+                              onChange={(e) => setAprendeuSobrePai(e.target.value)}
+                              placeholder={customQ20Placeholder || "Ex: 'Ele é imprevisível', 'Não posso confiar'..."}
+                              className="w-full rounded-xl border border-slate-200 p-3 text-xs focus:ring-2 focus:ring-rose-200 focus:outline-hidden bg-white shadow-3xs"
+                            />
+                          </div>
 
-                    {/* Question 21: aprendeuSobrePessoas */}
-                    <div className="space-y-2">
-                      <label className="block text-sm font-bold text-slate-700">
-                        21. O que você aprendeu sobre as pessoas de modo geral ?
-                      </label>
-                      <input
-                        type="text"
-                        id="aprendeu-sobre-pessoas"
-                        value={aprendeuSobrePessoas}
-                        onChange={(e) => setAprendeuSobrePessoas(e.target.value)}
-                        placeholder="Ex: 'As pessoas vão me julgar e calar', 'Ninguém vai me socorrer no perigo'..."
-                        className="w-full rounded-2xl border border-slate-200 p-3.5 text-sm focus:ring-2 focus:ring-rose-300 focus:outline-hidden bg-white"
-                      />
-                    </div>
-
-                    {/* Question 22: mudouDentro */}
-                    <div className="space-y-2">
-                      <label className="block text-sm font-bold text-slate-700">
-                        22. Depois dessa traumática situação, algo mudou na sua essência / dentro de você?
-                      </label>
-                      <textarea
-                        id="mudou-dentro-textarea"
-                        rows={3}
-                        value={mudouDentro}
-                        onChange={(e) => setMudouDentro(e.target.value)}
-                        placeholder="Descreva mudanças de personalidade em silêncio, retração, desconfiança ou ansiedade..."
-                        className="w-full rounded-2xl border border-slate-200 p-3.5 text-sm focus:ring-2 focus:ring-rose-300 focus:outline-hidden leading-relaxed bg-white"
-                      />
-                    </div>
-                  </div>
-
-                  {/* STEP 6: A VOZ QUE FOI CALADA */}
-                  <div className="space-y-5 bg-white p-5 rounded-2xl border border-slate-200 shadow-3xs scroll-mt-2" id="secao-6">
-                    <div className="flex items-center gap-2 pb-2.5 border-b border-rose-100">
-                      <span className="w-6 h-6 rounded-lg bg-rose-50 text-rose-600 font-extrabold text-[12px] flex items-center justify-center font-sans shrink-0">6</span>
-                      <h4 className="font-bold text-slate-800 text-xs sm:text-sm uppercase tracking-wider font-sans leading-none mt-0.5">A Voz Calada</h4>
-                    </div>
-
-                    {/* Question 23: tentouExplicar */}
-                    <div className="space-y-2">
-                      <label className="block text-sm font-bold text-slate-700">
-                        23. Você tentou se explicar ou justificar o ocorrido no momento?
-                      </label>
-                      <div className="flex gap-2">
-                        {['Sim', 'Não', 'Tentei mas me calaram com violência'].map((opt) => (
-                          <button
-                            key={opt}
-                            type="button"
-                            onClick={() => setTentouExplicar(opt)}
-                            className={`flex-1 px-3 py-3 rounded-xl border text-xs sm:text-sm font-bold cursor-pointer transition-all ${
-                              tentouExplicar === opt
-                                ? 'bg-rose-50 border-rose-500 text-rose-800 border-2'
-                                : 'bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100'
-                            }`}
-                          >
-                            {opt}
-                          </button>
-                        ))}
+                          <div className="space-y-1">
+                            <label className="block text-xs font-bold text-slate-700">Crença sobre as pessoas de modo geral:</label>
+                            <input
+                              type="text"
+                              id="aprendeu-sobre-pessoas"
+                              value={aprendeuSobrePessoas}
+                              onChange={(e) => setAprendeuSobrePessoas(e.target.value)}
+                              placeholder="Ex: 'As pessoas ferem quem amam', 'Qualquer um pode me calar'..."
+                              className="w-full rounded-xl border border-slate-200 p-3 text-xs focus:ring-2 focus:ring-rose-200 focus:outline-hidden bg-white shadow-3xs"
+                            />
+                          </div>
+                        </div>
                       </div>
-                      <input
-                        type="text"
-                        id="tentou-explicar"
-                        value={tentouExplicar}
-                        onChange={(e) => setTentouExplicar(e.target.value)}
-                        placeholder="Ou escreva com seus termos..."
-                        className="w-full rounded-2xl border border-slate-200 p-3 text-sm focus:ring-2 focus:ring-rose-250 focus:outline-hidden bg-white"
-                      />
-                    </div>
 
-                    {/* Question 24: ninguemQuisOuvir */}
-                    <div className="space-y-2">
-                      <label className="block text-sm font-bold text-slate-700">
-                        24. Você sentiu que ninguém quis de fato ouvir a sua versão do que houve?
-                      </label>
-                      <div className="flex gap-2">
-                        {['Totalmente', 'Um pouco', 'Não, me ouviram'].map((opt) => (
-                          <button
-                            key={opt}
-                            type="button"
-                            onClick={() => setNinguemQuisOuvir(opt)}
-                            className={`flex-1 px-3 py-3 rounded-xl border text-xs sm:text-sm font-bold cursor-pointer transition-all ${
-                              ninguemQuisOuvir === opt
-                                ? 'bg-rose-50 border-rose-500 text-rose-800 border-2'
-                                : 'bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100'
-                            }`}
-                          >
-                            {opt}
-                          </button>
-                        ))}
+                      {/* Question 14: Mudança de Essência & Desejos (mudouDentro, paiTivesseFeito, precisavaOuvir) */}
+                      <div className="border-t border-slate-100 pt-3 space-y-3">
+                        <label className="block text-xs font-extrabold text-rose-600 uppercase tracking-widest font-sans">
+                          14. Mudança na Essência & Desejos Ocultos
+                        </label>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <div className="space-y-1 col-span-1">
+                            <label className="block text-xs font-bold text-slate-700">O que mudou na sua essência desde aquele dia?</label>
+                            <textarea
+                              id="mudou-dentro-textarea"
+                              rows={3}
+                              value={mudouDentro}
+                              onChange={(e) => setMudouDentro(e.target.value)}
+                              placeholder="Ex: Fiquei mais tímido, retraído e desenvolvi um estado eterno de alerta..."
+                              className="w-full rounded-xl border border-slate-200 p-3 text-xs focus:ring-2 focus:ring-rose-200 focus:outline-hidden leading-relaxed bg-white shadow-3xs"
+                            />
+                          </div>
+
+                          <div className="space-y-1 col-span-1">
+                            <label className="block text-xs font-bold text-slate-700">O que gostaria que tivessem feito em seu lugar?</label>
+                            <textarea
+                              id="pai-tivesse-feito-textarea"
+                              rows={3}
+                              value={paiTivesseFeito}
+                              onChange={(e) => setPaiTivesseFeito(e.target.value)}
+                              placeholder={customQ16Placeholder || "Ex: Que alguém tivesse me defendido, ouvido com diálogo..."}
+                              className="w-full rounded-xl border border-slate-200 p-3 text-xs focus:ring-2 focus:ring-rose-200 focus:outline-hidden leading-relaxed bg-white shadow-3xs"
+                            />
+                          </div>
+
+                          <div className="space-y-1 col-span-1">
+                            <label className="block text-xs font-bold text-slate-700">O que você mais precisava ouvir naquele amargo momento?</label>
+                            <textarea
+                              id="precisava-ouvir-textarea"
+                              rows={3}
+                              value={precisavaOuvir}
+                              onChange={(e) => setPrecisavaOuvir(e.target.value)}
+                              placeholder="Ex: 'Calma, você está seguro', 'Não foi culpa sua', 'Eu estou aqui com você'..."
+                              className="w-full rounded-xl border border-slate-200 p-3 text-xs focus:ring-2 focus:ring-rose-200 focus:outline-hidden leading-relaxed bg-white shadow-3xs"
+                            />
+                          </div>
+                        </div>
                       </div>
-                      <input
-                        type="text"
-                        id="ninguem-quis-ouvir"
-                        value={ninguemQuisOuvir}
-                        onChange={(e) => setNinguemQuisOuvir(e.target.value)}
-                        placeholder="Como foi a reação do entorno familiar..."
-                        className="w-full rounded-2xl border border-slate-200 p-3 text-sm focus:ring-2 focus:ring-rose-250 focus:outline-hidden bg-white"
-                      />
-                    </div>
 
-                    {/* Question 25: quandoMandamCalar */}
-                    <div className="space-y-2">
-                      <label className="block text-sm font-bold text-slate-700">
-                        25. Como é para você hoje no presente quando mandam você ficar calado?
-                      </label>
-                      <textarea
-                        id="quando-mandam-calar-textarea"
-                        rows={3}
-                        value={quandoMandamCalar}
-                        onChange={(e) => setQuandoMandamCalar(e.target.value)}
-                        placeholder="Ex: Dispara pânico físico, me sinto humilhado, sinto vontade de chorar imediatamente, dá uma raiva incontrolável..."
-                        className="w-full rounded-2xl border border-slate-200 p-3.5 text-sm focus:ring-2 focus:ring-rose-300 focus:outline-hidden leading-relaxed bg-white"
-                      />
-                    </div>
+                      {/* Question 15: Exercício de Cura & Diálogo Clínico */}
+                      <div className="border-t border-slate-100 pt-3 space-y-4">
+                        <label className="block text-xs font-extrabold text-rose-600 uppercase tracking-widest font-sans">
+                          15. Exercício de Cura & Conexão de Proteção
+                        </label>
 
-                    {/* Question 26: primeiraVezNaoAcreditava */}
-                    <div className="space-y-2">
-                      <label className="block text-sm font-bold text-slate-705">
-                        26. Qual foi a primeira vez que você sentiu que de fato ninguém acreditava em você?
-                      </label>
-                      <textarea
-                        id="primeira-vez-nao-acreditava-textarea"
-                        rows={3}
-                        value={primeiraVezNaoAcreditava}
-                        onChange={(e) => setPrimeiraVezNaoAcreditava(e.target.value)}
-                        placeholder="Se foi nesse dia ou se remonta a algum acontecimento anterior da juventude ou infância..."
-                        className="w-full rounded-2xl border border-slate-200 p-3.5 text-sm focus:ring-2 focus:ring-rose-300 focus:outline-hidden leading-relaxed bg-white"
-                      />
-                    </div>
-                  </div>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                          <div className="space-y-1 bg-rose-50/10 p-3 border rounded-xl border-dashed">
+                            <label className="block font-sans text-[11px] font-bold text-slate-700">✨ "Naquele dia eu precisava de..."</label>
+                            <input
+                              type="text"
+                              id="exercicio-precisava"
+                              value={exercicioPrecisava}
+                              onChange={(e) => setExercicioPrecisava(e.target.value)}
+                              className="w-full rounded-lg border border-slate-200 bg-white p-2 text-xs focus:ring-2 focus:ring-rose-100 italic shadow-3xs"
+                            />
+                          </div>
 
-                  {/* STEP 7: EXERCÍCIO DO CORAÇÃO */}
-                  <div className="space-y-6 bg-white p-5 rounded-2xl border border-slate-200 shadow-3xs scroll-mt-2" id="secao-7">
-                    <div className="flex items-center gap-2 pb-2.5 border-b border-rose-100">
-                      <span className="w-6 h-6 rounded-lg bg-rose-50 text-rose-600 font-extrabold text-[12px] flex items-center justify-center font-sans shrink-0">7</span>
-                      <h4 className="font-bold text-slate-800 text-xs sm:text-sm uppercase tracking-wider font-sans leading-none mt-0.5">Exercício do Coração</h4>
-                    </div>
+                          <div className="space-y-1 bg-rose-50/10 p-3 border rounded-xl border-dashed">
+                            <label className="block font-sans text-[11px] font-bold text-slate-700">✨ "Naquele dia eu queria dizer..."</label>
+                            <input
+                              type="text"
+                              id="exercicio-queria-dizer"
+                              value={exercicioQueriaDizer}
+                              onChange={(e) => setExercicioQueriaDizer(e.target.value)}
+                              className="w-full rounded-lg border border-slate-200 bg-white p-2 text-xs focus:ring-2 focus:ring-rose-100 italic shadow-3xs"
+                            />
+                          </div>
 
-                    <div className="bg-rose-50 border border-rose-100 p-4 rounded-xl flex gap-3 text-slate-705 text-xs sm:text-sm italic font-sans leading-relaxed">
-                      <Heart className="w-5 h-5 text-rose-500 animate-pulse shrink-0 mt-0.5" />
-                      <span>
-                        <b>Exercício Clínico de Integração:</b> Feche os olhos por alguns instantes, respire profundamente de forma lenta... {customHeartExerciseContext || 'deite o foco na ferida do enforcamento na adolescência de Thiago'}, e complete com sua primeira intuição sem pensar:
-                      </span>
-                    </div>
+                          <div className="space-y-1 bg-rose-50/10 p-3 border rounded-xl border-dashed">
+                            <label className="block font-sans text-[11px] font-bold text-slate-700">✨ "Até hoje o que mais me machuca é..."</label>
+                            <input
+                              type="text"
+                              id="exercicio-mais-machuca"
+                              value={exercicioMaisMachuca}
+                              onChange={(e) => setExercicioMaisMachuca(e.target.value)}
+                              className="w-full rounded-lg border border-slate-200 bg-white p-2 text-xs focus:ring-2 focus:ring-rose-100 italic shadow-3xs"
+                            />
+                          </div>
+                        </div>
 
-                    {/* Exercicio 1: exercicioPrecisava */}
-                    <div className="space-y-2 bg-rose-50/20 p-4 border rounded-3xl border-dashed">
-                      <label className="block font-sans text-sm font-bold text-slate-700 mb-1">
-                        ✨ "Naquele dia eu precisava de..."
-                      </label>
-                      <input
-                        type="text"
-                        id="exercicio-precisava"
-                        value={exercicioPrecisava}
-                        onChange={(e) => setExercicioPrecisava(e.target.value)}
-                        placeholder="Complete a frase intimamente..."
-                        className="w-full rounded-xl border border-slate-250 bg-white p-3 text-sm focus:ring-2 focus:ring-rose-300 focus:outline-hidden italic"
-                      />
-                    </div>
-
-                    {/* Exercicio 2: exercicioQueriaDizer */}
-                    <div className="space-y-2 bg-rose-50/20 p-4 border rounded-3xl border-dashed">
-                      <label className="block font-sans text-sm font-bold text-slate-700 mb-1">
-                        ✨ "Naquele dia eu queria dizer..."
-                      </label>
-                      <input
-                        type="text"
-                        id="exercicio-queria-dizer"
-                        value={exercicioQueriaDizer}
-                        onChange={(e) => setExercicioQueriaDizer(e.target.value)}
-                        placeholder="Complete a frase intimamente..."
-                        className="w-full rounded-xl border border-slate-250 bg-white p-3 text-sm focus:ring-2 focus:ring-rose-300 focus:outline-hidden italic animate-none"
-                      />
-                    </div>
-
-                    {/* Exercicio 3: exercicioMaisMachuca */}
-                    <div className="space-y-2 bg-rose-50/20 p-4 border rounded-3xl border-dashed">
-                      <label className="block font-sans text-sm font-bold text-slate-700 mb-1">
-                        ✨ "Até hoje o que mais me machuca é..."
-                      </label>
-                      <input
-                        type="text"
-                        id="exercicio-mais-machuca"
-                        value={exercicioMaisMachuca}
-                        onChange={(e) => setExercicioMaisMachuca(e.target.value)}
-                        placeholder="Complete a frase intimamente..."
-                        className="w-full rounded-xl border border-slate-250 bg-white p-3 text-sm focus:ring-2 focus:ring-rose-300 focus:outline-hidden italic animate-none"
-                      />
-                    </div>
-                  </div>
-
-                  {/* STEP 8: PERGUNTA FINAL */}
-                  <div className="space-y-4 bg-white p-5 rounded-2xl border border-slate-200 shadow-3xs scroll-mt-2" id="secao-8">
-                    <div className="flex items-center gap-2 pb-2.5 border-b border-rose-100">
-                      <span className="w-6 h-6 rounded-lg bg-rose-50 text-rose-600 font-extrabold text-[12px] flex items-center justify-center font-sans shrink-0">8</span>
-                      <h4 className="font-bold text-slate-800 text-xs sm:text-sm uppercase tracking-wider font-sans leading-none mt-0.5">Frase de Acolhimento</h4>
-                    </div>
-
-                    {/* Question 27: mensagemThiagoPassado */}
-                    <div className="space-y-4 border-2 border-rose-300 border-dashed bg-rose-50/15 p-5 sm:p-6 rounded-3xl">
-                      <div className="flex items-center gap-2 text-slate-800">
-                        <Smile className="w-6 h-6 text-rose-500 animate-pulse" />
-                        <span className="font-serif font-extrabold text-sm sm:text-base leading-relaxed text-slate-900 block">
-                          Pergunta final de Acolhimento Restaurador
-                        </span>
+                        <div className="space-y-3 bg-rose-50/20 p-5 rounded-2xl border border-rose-150">
+                          <div className="flex items-center gap-2 text-slate-800">
+                            <Smile className="w-4 h-4 text-rose-500 animate-pulse" />
+                            <span className="font-sans font-extrabold text-xs uppercase tracking-wider">Acolhimento de Criança/Adolescente Interior</span>
+                          </div>
+                          <p className="text-[11px] text-slate-500 leading-relaxed font-sans font-medium">
+                            {customQ27Label || `Imagine que aquele ${customPatientName || 'Thiago'} adolescente daquele terrível dia do trauma está deitado ou sentado bem na sua frente agora. O que você diria para confortá-lo hoje, com o acolhimento, força e sabedoria que conquistou?`}
+                          </p>
+                          <textarea
+                            id="mensagem-thiago-passado-textarea"
+                            rows={4}
+                            value={mensagemThiagoPassado}
+                            onChange={(e) => setMensagemThiagoPassado(e.target.value)}
+                            placeholder={customQ27Placeholder || "Abra seu coração por inteiro. Ofereça proteção, valide que não foi culpa dele, liberte-o daquela asfixia..."}
+                            className="w-full rounded-2xl border border-rose-200 bg-white p-4 text-xs focus:outline-hidden focus:ring-2 focus:ring-rose-200 italic leading-relaxed"
+                          />
+                        </div>
                       </div>
-                      <p className="text-xs text-slate-500 leading-relaxed font-sans font-medium">
-                        {customQ27Label || `Imagine que aquele Thiago adolescente daquele terrível dia do enforcamento está exatamente agora sentado bem na sua frente. Ele está te escutando com olhos curiosos e atentos... O que você diria para confortá-lo hoje, com a sabedoria e voz que você conquistou?`}
-                      </p>
-                      <textarea
-                        id="mensagem-thiago-passado-textarea"
-                        rows={5}
-                        value={mensagemThiagoPassado}
-                        onChange={(e) => setMensagemThiagoPassado(e.target.value)}
-                        placeholder={customQ27Placeholder || "Abra seu coração por inteiro. Ofereça proteção, valide que não foi culpa dele, liberte-o daquela asfixia..."}
-                        className="w-full rounded-2xl border border-rose-300 bg-white p-4 text-sm focus:outline-hidden focus:ring-4 focus:ring-rose-500/10 focus:border-rose-450 italic leading-relaxed"
-                      />
                     </div>
                   </div>
 
